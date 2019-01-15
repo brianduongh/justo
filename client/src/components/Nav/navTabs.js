@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style.css";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
 
-const page = "Dashboard";
+const page = "Justo";
 
 
 class Navs extends Component {
@@ -20,16 +20,18 @@ class Navs extends Component {
 			<Navbar inverse collapseOnSelect>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="#brand" id ="brand">{page}</a>
+						<a href="/dashboard" id ="brand">{page}</a>
+
 					</Navbar.Brand>
 					<Navbar.Toggle />
+
 				</Navbar.Header>
 				<Navbar.Collapse>
 					<Nav pullRight>
-						<NavItem eventKey={1} href="#" onClick ={this.changeColor} style={{background:this.state.background}}>
+						<NavItem eventKey={1} href="/dashboard" onClick ={this.changeColor} style={{background:this.state.background}}>
 							Dashboard
 						</NavItem>
-						<NavItem eventKey={2} href="/about" onClick ={this.changeColor} style={{background:this.state.background}}>
+						<NavItem eventKey={2} href="/account" onClick ={this.changeColor} style={{background:this.state.background}}>
 							Account
 						</NavItem>
 						<NavItem eventKey={2} href="#" onClick ={this.changeColor} style={{background:this.state.background}}>
