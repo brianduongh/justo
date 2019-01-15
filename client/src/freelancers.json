@@ -5,6 +5,8 @@
     "image":
       "images/profile-clay.png",
     "active": true,
+    "rate": 25,
+    "profession": "Scenic Designer",
     "employer": false
   },
   {

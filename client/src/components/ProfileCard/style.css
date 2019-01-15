@@ -1,0 +1,19 @@
+.p-card {
+  /* padding-top:20px; */
+  margin:auto 30px auto 30px;
+}
+
+.p-text {
+  max-width:300px;
+  text-align:left;
+  font-weight:100;
+  color:black;
+  padding:15px;
+  font-size:16px;
+  background:#ECECEC;
+}
+
+hr {
+  border-top: 1px solid lightgrey;
+  margin: 0px auto 10px auto;
+}
