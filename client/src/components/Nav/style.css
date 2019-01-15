@@ -1,0 +1,30 @@
+.navbar-inverse {
+    background-color: #544F4F;
+    border-color: #544F4F;
+}
+
+.navbar-inverse .navbar-brand{
+    font-family: 'Pacifico', cursive;
+    font-size: 28px;
+    color: white;
+
+}
+
+@media only screen and (max-width: 600px) {
+
+    .navbar-toggle{
+        float:left;
+        margin-left: 15px;
+        border: 0;
+    }
+
+    .navbar-brand{
+        left: 15%;
+        position: relative;
+        float: none;
+        top: 15px;
+
+    }
+
+    
+}
