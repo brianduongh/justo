@@ -1,13 +1,15 @@
 import React from "react";
 import Dashboard from "./components/Dashboard";
-import Account from "./components/./Account";
-
-
+import Account from "./components/Account";
+import Landing from "./components/Landing";
 
 function App() {
   return (
-    <Dashboard />
-    // <Account />
+    <div>
+      {/* <Dashboard />
+      <Account /> */}
+      <Landing />
+    </div>
   );
 }
 

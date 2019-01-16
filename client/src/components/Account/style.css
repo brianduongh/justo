@@ -1,39 +1,9 @@
 .profile-sm {
-    height: 200px;
+    display:inline-block;
+    width:300px;
+    height:auto;
+    max-width:80%;
     overflow: hidden;
     text-align: center;
     box-shadow: rgb(59, 59, 59) 3px 3px 10px;
-  }
-  
-  .f-card {
-    padding-top:20px;
-  }
-  
-  .f-text {
-    font-weight:100;
-    color:#ECECEC;
-    padding:15px;
-    font-size:20px;
-  }
-  
-  .label-default {
-    background:#ECECEC;
-    display: inline;
-    padding: .2em .6em .3em;
-    font-weight:100;
-    color: #424244;
-    text-align: center;
-    vertical-align: baseline;
-    border-radius: .25em;
-  }
-  
-  .label-success {
-    background:#00DA51;
-    display: inline;
-    padding: .2em .6em .3em;
-    font-weight:100;
-    color: #ECECEC;
-    text-align: center;
-    vertical-align: baseline;
-    border-radius: .25em;
   }

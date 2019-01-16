@@ -6,7 +6,7 @@
 }
 
 .f-card {
-  padding-top:30px;
+  padding-top:10px;
 }
 
 .f-text {
@@ -36,9 +36,4 @@
   text-align: center;
   vertical-align: baseline;
   border-radius: .25em;
-}
-
-p {
-  padding:none;
-  margin:none;
 }

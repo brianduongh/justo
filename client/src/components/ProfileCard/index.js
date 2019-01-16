@@ -1,19 +1,38 @@
 import React from "react";
 import "./style.css";
-import { Col, Image, Label } from "react-bootstrap";
+import { Col } from "react-bootstrap";
 
 
 function ProfileCard(props) {
   return (
-    <Col className="p-card" xs={12} sm={12} md={6}>
-      <div className="p-text">
-        <p>Justo ID: {props.id}</p>
-        <hr/>
-        <p>Profession: {props.profession}</p>
-        <hr/>
-        <p>Rate: ${props.rate}/hour</p>
+    <div>
+      <div className="p-card">
+        <div className="p-text">
+          <p>
+            <strong>Justo ID: </strong>
+            #{props.id}
+          </p><hr/>
+          <p>
+            <strong>Profession: </strong> 
+            {props.profession}
+          </p><hr/>
+          <p>
+            <strong>Project Hours: </strong>
+          </p><hr/>
+          <p>
+            <strong>Rate/hour: </strong>
+            ${props.rate}
+          </p><hr/>
+          <p>
+            <strong>Pay Accrued: </strong>
+          </p>
+        </div>
       </div>
-    </Col>
+      <div>
+        <button className="justo-button">Make Payment</button>
+        <button className="justo-button">Request Screen Share</button>
+      </div>
+    </div>
   );
 }
 

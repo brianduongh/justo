@@ -14,24 +14,24 @@ class Account extends Component {
                 <Wrapper>
                     <Grid>
                         <Row>
-                            <Col className="f-card" xs={12} sm={12} md={4}>
-                                <button id="upload-link">Upload Profile Photo</button>
+                            <Col xs={12} sm={12} md={6}>
+                                {/* <button id="upload-link" className="justo-button" >Upload Profile Photo</button> */}
+                                <FreelancerCard
+                                        key={freelancers[0].id}
+                                        name={freelancers[0].name}
+                                        image={freelancers[0].image}
+                                        active={freelancers[0].active}
+                                />
                             </Col>
-                        </Row>
-                        <Row>
-                            <FreelancerCard
-                                    key={freelancers[0].id}
-                                    name={freelancers[0].name}
-                                    image={freelancers[0].image}
-                                    active={freelancers[0].active}
-                            />
-                            <ProfileCard
-                                    key={freelancers[0].id}
-                                    id={freelancers[0].id}
-                                    name={freelancers[0].name}
-                                    profession={freelancers[0].profession}
-                                    rate={freelancers[0].rate}
-                            />
+                            <Col xs={12} sm={12} md={6}>
+                                <ProfileCard
+                                        key={freelancers[0].id}
+                                        id={freelancers[0].id}
+                                        name={freelancers[0].name}
+                                        profession={freelancers[0].profession}
+                                        rate={freelancers[0].rate}
+                                />
+                            </Col>
                         </Row>
                     </Grid>
                 </Wrapper>

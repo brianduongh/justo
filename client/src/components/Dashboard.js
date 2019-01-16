@@ -5,7 +5,6 @@ import freelancers from "../freelancers.json";
 import { Grid, Row } from "react-bootstrap";
 
 class Dashboard extends Component {
-
     render() {
         return (
             <div>
