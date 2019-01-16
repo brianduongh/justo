@@ -13,7 +13,6 @@ function App() {
   return (
     <Router>
       <div>
-        <Navs />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/account" component={Account} />
 

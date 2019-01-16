@@ -2,46 +2,53 @@ import React, { Component } from "react";
 import "./style.css";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
 
-const page = "Justo";
+
+// class Navs extends Component {
+function Navs(props){
 
 
-class Navs extends Component {
 
-	state ={
-		background: "#544F4F"
-	};
+	// state ={
+	// 	background: "#544F4F"
+	// };
 
-	changeColor = () => {
-		this.setState({background:"white"});
-	};
+	// changeColor = () => {
+	// 	this.setState({background:"white"});
+	// };
 
-	render(){
+	// render(props){
 		return (
 			<Navbar inverse collapseOnSelect>
 				<Navbar.Header>
 					<Navbar.Brand>
-						<a href="/dashboard" id ="brand">{page}</a>
+						<a href="/dashboard" id ="brand">
+							{props.page}
+						
+						</a>
 
 					</Navbar.Brand>
-					<Navbar.Toggle />
+					<i className="fas fa-plus" id ="plus"></i>
 
+					<Navbar.Toggle />
+					
 				</Navbar.Header>
 				<Navbar.Collapse>
 					<Nav pullRight>
-						<NavItem eventKey={1} href="/dashboard" onClick ={this.changeColor} style={{background:this.state.background}}>
+						<NavItem eventKey={1} href="/dashboard">
 							Dashboard
 						</NavItem>
-						<NavItem eventKey={2} href="/account" onClick ={this.changeColor} style={{background:this.state.background}}>
+						<NavItem eventKey={2} href="/account">
 							Account
 						</NavItem>
-						<NavItem eventKey={2} href="#" onClick ={this.changeColor} style={{background:this.state.background}}>
+						<NavItem eventKey={2} href="#">
 							Sign Out
 						</NavItem>
 					</Nav>
 				</Navbar.Collapse>
 			</Navbar>
 		)
-	}
+	// }
+// }
 }
 
 export default Navs;
