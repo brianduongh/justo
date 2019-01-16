@@ -27,7 +27,8 @@ function Navs(props){
 						</a>
 
 					</Navbar.Brand>
-					<i className="fas fa-plus" id ="plus"></i>
+					<i class="fas fa-user-plus" id ="plus"></i>
+
 
 					<Navbar.Toggle />
 					
