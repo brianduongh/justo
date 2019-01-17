@@ -8,11 +8,13 @@ import "./style.css";
 
 class Account extends Component {
     state ={
-        freelancers
+        freelancers,
+        user_id: null
     }
     
-componentDidMount(){
+componentWillMount(){
     console.log(this.props.id);
+    this.setState({ user_id: this.props.id })
 }
 
     render() {
@@ -23,20 +25,19 @@ componentDidMount(){
                         <Row>
                             <Col xs={12} sm={12} md={6}>
                                 {/* <button id="upload-link" className="justo-button" >Upload Profile Photo</button> */}
-                                {this.state.freelancers.map(freelancer => (
+                                {/* {this.state.freelancers.map(freelancer => ( */}
 
                                     <FreelancerCard
-                                            key={freelancer.id}
-                                            name={freelancer.name}
-                                            image={freelancer.image}
-                                            active={freelancer.active}
+                                            name={freelancers[this.state.user_id].name}
+                                            image={freelancers[1].image}
+                                            active={freelancers[1].active}
                                             showPeople={this.showPeople}
 
                                     />
 
-                                ))}
+                                {/* ))} */}
 
-                                {this.state.freelancers.map(freelancer => (
+                                {/* {this.state.freelancers.map(freelancer => (
 
                                     <ProfileCard
                                             key={freelancer.id}
@@ -46,7 +47,7 @@ componentDidMount(){
                                             rate={freelancer.rate}
                                     />
 
-                                ))}
+                                ))} */}
                             </Col>
                         </Row>
                     </Grid>
