@@ -1,18 +1,34 @@
-import React from "react";
 import Navs from "../components/Nav"
-// import Dashboard from "../Componets"
 
-// const page = "Dashborad";
+import React, { Component } from "react";
+import Wrapper from "../components/Wrapper";
+import FreelancerCard from "../components/FreelancerCard";
+import freelancers from "../freelancers.json";
+import { Grid, Row } from "react-bootstrap";
 
-function Dashboard1() {
-  return (
-    <div>
-        <Navs page ="Dashboard" image ="<i class='fas fa-plus'></i>"/>
-        Dash page
-
-
-    </div>
-  );
+class Dashboard extends Component {
+    render() {
+        return (
+            <div>        
+              <Navs page ="Dashboard" image ="<i class='fas fa-plus'></i>"/>
+                <Wrapper>
+                    <Grid>
+                        <Row>
+                            {freelancers.map(freelancer => (
+                            <FreelancerCard
+                                key={freelancer.id}
+                                name={freelancer.name}
+                                image={freelancer.image}
+                                active={freelancer.active}
+                            />
+                            ))}
+                        </Row>
+                    </Grid>
+                </Wrapper>
+            </div>
+        );
+    }
 }
 
-export default Dashboard1;
+export default Dashboard;
+

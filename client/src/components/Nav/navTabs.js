@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import "./style.css";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
 
+const navStyle = {
+	display: 'none'
+}
+
+// const title ={
+// 	left: '50%'
+// }
+
 
 // class Navs extends Component {
 function Navs(props){
@@ -17,6 +25,7 @@ function Navs(props){
 	// };
 
 	// render(props){
+
 		return (
 			<Navbar inverse collapseOnSelect>
 				<Navbar.Header>
@@ -27,7 +36,7 @@ function Navs(props){
 						</a>
 
 					</Navbar.Brand>
-					<i class="fas fa-user-plus" id ="plus"></i>
+					{/* <i class="fas fa-user-plus" id ="plus"></i> */}
 
 
 					<Navbar.Toggle />
@@ -41,7 +50,7 @@ function Navs(props){
 						<NavItem eventKey={2} href="/account">
 							Account
 						</NavItem>
-						<NavItem eventKey={2} href="#">
+						<NavItem eventKey={2} href="/signout">
 							Sign Out
 						</NavItem>
 					</Nav>
