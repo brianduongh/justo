@@ -8,8 +8,6 @@ function ShowAccount() {
     	<div>
         <Navs page ="Account"/>
 		<Account/>
-
-        	Account page
     	</div>
   	);
 }

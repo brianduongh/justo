@@ -1,56 +1,37 @@
-.navbar-inverse {
-    background-color: #544F4F;
-    border-color: #544F4F;
+/* main navbar styles */
+.navbar-default {
+    background: #424244;
+    border-style:none;
+    box-shadow: grey 2px 2px 2px;
+    color: #ECECEC;
 }
 
-.navbar-inverse .navbar-brand{
+/* navbar main text */
+.navbar-default .navbar-brand {
+    color: #ECECEC;
     font-family: 'Pacifico', cursive;
     font-size: 28px;
     color: white;
-
 }
 
-#plus{
-    display:none;
+/* navbar link text */
+.navbar-default .navbar-nav>li>a {
+    color: #ECECEC;
+}
+
+/* navbar hambuger */
+.navbar-default .navbar-toggle {
+    border-style:none;
 }
 
 .navbar-brand{
-
-
 text-transform: none;
 }
 
-
-
-
 @media only screen and (max-width: 600px) {
 
-    .navbar-toggle{
-        float:left;
-        margin-left: 15px;
-        border: 0;
-    }
+}
 
-    .navbar-brand{
-        left: 15%;
-        position: relative;
-        float: none;
-        top: 0;
+@media only screen and (min-width: 601px) {
 
-    }
-
-    #plus{
-        position: relative;
-        left: 35%;
-        display: inline;
-        color: white;
-        top:8px;
-        
-    }
-
-    .navbar>.container, .navbar>.container-fluid{
-        justify-content:flex-start;
-    }
-
-    
 }

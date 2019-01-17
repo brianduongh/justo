@@ -1,3 +1,7 @@
+div.row {
+  margin:auto;
+}
+
 .profile-sm {
   height: 200px;
   overflow: hidden;
@@ -7,6 +11,7 @@
 
 .f-card {
   padding-top:10px;
+  display:inline-block;
 }
 
 .f-text {

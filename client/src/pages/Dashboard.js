@@ -15,7 +15,7 @@ class Dashboard extends Component {
                     <Grid>
                         <Row>
                             {freelancers.map(freelancer => (
-                            <FreelancerCard
+                            <FreelancerCard style={{ float:"left"}}
                                 key={freelancer.id}
                                 name={freelancer.name}
                                 image={freelancer.image}
