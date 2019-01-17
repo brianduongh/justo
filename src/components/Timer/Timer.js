@@ -31,10 +31,10 @@ class Timer extends React.Component {
                     if(this.state.timerStarted) {
                         this.setState((prevState) => { return {seconds: prevState.seconds +1}});
 
-                        if(this.state.seconds >= 10) {
+                        if(this.state.seconds >= 60) {
                             this.setState((prevState) =>{ return { minutes: prevState.minutes + 1, seconds: 0}});
                         }
-                        if (this.state.minutes >= 10) {
+                        if (this.state.minutes >= 60) {
                             this.setState((prevState) =>{return { hours: prevState.hours + 1, minutes: 0, seconds: 0}});
                         }
                         
@@ -63,15 +63,15 @@ class Timer extends React.Component {
     }
 
 
-    doMath(hrs, mins)  {
-        let countAmount = (hrs+mins/60)*this.state.hourlyPay
+    doMath(hrs, mins, secs)  {
+        let countAmount = (hrs+mins/60+secs/60/60)*this.state.hourlyPay
         this.setState({payAmount: countAmount })
         return this.state.payAmount
     }
 
     handleTimeCapture () {
         this.setState((prevState)=>({ captures: [...prevState.captures, this.state.hours + ":" + this.state.minutes + ":" + this.state.seconds]}))
-        this.doMath(this.state.hours, this.state.minutes)
+        this.doMath(this.state.hours, this.state.minutes, this.state.seconds)
     }
 
     render() {
@@ -79,11 +79,11 @@ class Timer extends React.Component {
             <div className="container">
                 <Tracker hours={this.state.hours} minutes={this.state.minutes} seconds= {this.state.seconds} hourlyPay={this.state.hourlyPay} payAmount={this.state.payAmount}></Tracker>
                 <h2>Timer</h2>
-                <div className = "timer-captures">
+                {/* <div className = "timer-captures">
                  {this.state.captures.map((time, index) => {
                      return <p key={index}>{"capture" + (index + 1) + "--" + time}</p>
-                 })}
-                </div>
+                 })} 
+                </div>*/}
                 <div className="timer-container"
                 >
                     {this.state.hours + ":" + this.state.minutes + ":" + this.state.seconds}
@@ -93,7 +93,7 @@ class Timer extends React.Component {
                     <button className="btn btn-alert" onClick={this.handleTimerStop.bind(this)}>
                         Stop Timer</button>
                     <button className="btn btn-info" onClick={this.handleTimeCapture.bind(this)}>
-                        Capture Time</button>
+                        CalcPayment</button>
                     <button className="btn btn-danger" onClick={this.handleTimerReset.bind(this)}>
                         Reset</button>
                 </div>
