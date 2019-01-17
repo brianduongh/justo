@@ -30,6 +30,7 @@
     "name": "Anna Park",
     "image":
     "images/profile-anna.png",
+    "rate": 20,
     "active": false,
     "employer": false
   },

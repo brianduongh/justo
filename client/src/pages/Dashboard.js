@@ -7,6 +7,17 @@ import freelancers from "../freelancers.json";
 import { Grid, Row } from "react-bootstrap";
 
 class Dashboard extends Component {
+
+    state ={
+        freelancers
+    }
+
+    showPeople = id => {
+        console.log(this.state.freelancers,id);
+        const freelancers = this.state.freelancers.find(freelancer => freelancer.id === id);
+        this.setState({freelancers:[freelancers]});  
+      };
+
     render() {
         return (
             <div>        
@@ -14,14 +25,23 @@ class Dashboard extends Component {
                 <Wrapper>
                     <Grid>
                         <Row>
-                            {freelancers.map(freelancer => (
+
+                        {this.state.freelancers.map(freelancer => (
+
+                            // {freelancers.map(freelancer => (
                             <FreelancerCard
                                 key={freelancer.id}
+                                id={freelancer.id}
                                 name={freelancer.name}
                                 image={freelancer.image}
                                 active={freelancer.active}
+                                showPeople={this.showPeople}
+
                             />
                             ))}
+                            
+
+                            {/* ))} */}
                         </Row>
                     </Grid>
                 </Wrapper>

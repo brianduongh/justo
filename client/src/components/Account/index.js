@@ -7,6 +7,13 @@ import { Grid, Row, Col } from "react-bootstrap";
 import "./style.css";
 
 class Account extends Component {
+    state ={
+        freelancers
+    }
+    
+componentDidMount(){
+    console.log(this.props.id);
+}
 
     render() {
         return (
@@ -16,21 +23,30 @@ class Account extends Component {
                         <Row>
                             <Col xs={12} sm={12} md={6}>
                                 {/* <button id="upload-link" className="justo-button" >Upload Profile Photo</button> */}
-                                <FreelancerCard
-                                        key={freelancers[0].id}
-                                        name={freelancers[0].name}
-                                        image={freelancers[0].image}
-                                        active={freelancers[0].active}
-                                />
-                            </Col>
-                            <Col xs={12} sm={12} md={6}>
-                                <ProfileCard
-                                        key={freelancers[0].id}
-                                        id={freelancers[0].id}
-                                        name={freelancers[0].name}
-                                        profession={freelancers[0].profession}
-                                        rate={freelancers[0].rate}
-                                />
+                                {this.state.freelancers.map(freelancer => (
+
+                                    <FreelancerCard
+                                            key={freelancer.id}
+                                            name={freelancer.name}
+                                            image={freelancer.image}
+                                            active={freelancer.active}
+                                            showPeople={this.showPeople}
+
+                                    />
+
+                                ))}
+
+                                {this.state.freelancers.map(freelancer => (
+
+                                    <ProfileCard
+                                            key={freelancer.id}
+                                            id={freelancer.id}
+                                            name={freelancer.name}
+                                            profession={freelancer.profession}
+                                            rate={freelancer.rate}
+                                    />
+
+                                ))}
                             </Col>
                         </Row>
                     </Grid>
