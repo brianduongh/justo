@@ -1,22 +1,22 @@
 
 import React from "react";
-import { start, resume, pause, stop, reset, timerState } from "react-compound-timer";
+import { Timer, Fragment, Days, Hours, Minutes, Seconds, Milliseconds } from "react-compound-timer";
 
-export default class Timer extends React.Component {
+ class Newtimer extends React.Component {
     render() {
         <Timer
-            initialTime={55000}
+            initialTime={5000}
             startImmediately={false}
         >
             {({ start, resume, pause, stop, reset, timerState }) => (
                 <React.Fragment>
-                    <div>
-                        <Timer.Days /> days
-                <Timer.Hours /> hours
-                <Timer.Minutes /> minutes
-                <Timer.Seconds /> seconds
-                <Timer.Milliseconds /> milliseconds
-            </div>
+                <div>
+                    <Timer.Days /> days
+                    <Timer.Hours /> hours
+                    <Timer.Minutes /> minutes
+                    <Timer.Seconds /> seconds
+                    <Timer.Milliseconds /> milliseconds
+                </div>
                     <div>{timerState}</div>
                     <br />
                     <div>
@@ -33,3 +33,6 @@ export default class Timer extends React.Component {
     }
 
 }
+
+
+export default Newtimer;

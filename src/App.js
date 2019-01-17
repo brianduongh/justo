@@ -1,10 +1,10 @@
 import React from "react";
-import Newtimer from "./components/Timer"
+import Timer from "./components/Timer";
 
 function App() {
   return (
     <div>
-      <Newtimer />
+      hello
     </div>
   );
 }

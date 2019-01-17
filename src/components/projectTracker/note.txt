@@ -1,0 +1,9 @@
+Tracker
+    Seconds worked
+    addTimeToTracker
+        Seconds worked = seconds worked + (10)
+Timer
+    Time Started
+    Time Ended
+    (prop)addTimeToTracker(10)
+ 
