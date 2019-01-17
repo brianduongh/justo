@@ -5,6 +5,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard1 from "./pages/Dashboard";
 import Account from "./pages/Account";
 
+//clays stuff
+
+import Dashboard from "./components/Dashboard";
+import Account from "./components/Account";
+import Landing from "./components/Landing";
+
+
 
 
 
@@ -19,8 +26,13 @@ function App() {
 
 
         hello this is a test
-      </div>
-    </Router>
+
+      {/* <Dashboard />
+      <Account /> */}
+      <Landing />
+    </div>
+  </Router>
+
   );
 }
 

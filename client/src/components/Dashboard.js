@@ -5,14 +5,6 @@ import freelancers from "../freelancers.json";
 import { Grid, Row } from "react-bootstrap";
 
 class Dashboard extends Component {
-
-    // state = {
-    //     activeToggle: true
-    // };
-
-    // handleEvent = () => {
-    // };
-
     render() {
         return (
             <div>
