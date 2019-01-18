@@ -4,8 +4,6 @@ import { Col, Image, Label } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-
-
 function FreelancerCard(props) {
   
 
