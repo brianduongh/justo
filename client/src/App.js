@@ -12,7 +12,7 @@ function App() {
       <div>
           <Route exact path="/" component={Landing} />
           <Route exact path="/dashboard" component={Dashboard1} />
-          <Route exact path="/signout" component={SignOut} />
+          <Route exact path="/signout" component={Landing} />
 
           <Route path="/account/:id" component={ShowAccount} />
         

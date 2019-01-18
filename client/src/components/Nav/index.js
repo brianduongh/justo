@@ -45,9 +45,9 @@ function Navs(props){
 						<NavItem eventKey={1} href="/dashboard">
 							Dashboard
 						</NavItem>
-						<NavItem eventKey={2} href="/account">
+						{/* <NavItem eventKey={2} href="/account">
 							Account
-						</NavItem>
+						</NavItem> */}
 						<NavItem eventKey={2} href="/signout">
 							Sign Out
 						</NavItem>

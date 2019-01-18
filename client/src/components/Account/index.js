@@ -25,19 +25,19 @@ componentWillMount(){
                         <Row>
 
                             <Col xs={12} sm={12} md={6}>
-                                {/* <button id="upload-link" className="justo-button" >Upload Profile Photo</button> */}
-                               
-
-                                    <FreelancerCard
-                                            name={freelancers[this.state.user_id-1].name}
-                                            image={freelancers[this.state.user_id-1].image}
-                                            active={freelancers[this.state.user_id-1].active}
-                                            showPeople={this.showPeople}
-                                    />
+                                <button id="upload-link" className="justo-button" >Upload Profile Photo</button>
+                                <FreelancerCard
+                                    name={freelancers[this.state.user_id-1].name}
+                                    image={freelancers[this.state.user_id-1].image}
+                                    active={freelancers[this.state.user_id-1].active}
+                                    showPeople={this.showPeople}
+                                />
                             </Col>
+
                             <Col xs={12} sm={12} md={6}>
                                 <Timer />
                             </Col>
+
                         </Row>
                     </Grid>
                 </Wrapper>
