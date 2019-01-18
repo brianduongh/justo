@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "name": "Clayton Bondy",
+    "image":
+      "images/profile-clay.png",
+    "active": true,
+    "rate": 25,
+    "profession": "Scenic Designer",
+    "employer": false
+  },
+  {
+    "id": 2,
+    "name": "Peng Si",
+    "image":
+    "images/profile-peng.png",
+    "active": false,
+    "employer": false
+  },
+  {
+    "id": 3,
+    "name": "Isaac Hormel",
+    "image":
+    "images/profile-isaac.png",
+    "active": true,
+    "employer": false
+  },
+  {
+    "id": 4,
+    "name": "Anna Park",
+    "image":
+    "images/profile-anna.png",
+    "rate": 20,
+    "active": false,
+    "employer": false
+  },
+  {
+    "id": 5,
+    "name": "Brian Duong",
+    "image":
+    "images/profile-brian.png",
+    "active": false,
+    "employer": false
+  }
+]
+

@@ -1,0 +1,8 @@
+.profile-sm {
+    width:300px;
+    height:auto;
+    max-width:80%;
+    overflow: hidden;
+    text-align: center;
+    box-shadow: rgb(59, 59, 59) 3px 3px 10px;
+  }
