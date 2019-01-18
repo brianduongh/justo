@@ -1,6 +1,11 @@
 const express = require("express");
+const Sequelize = require("sequelize");
+const sequelize = new Sequelize("mysql:3306/justo");
 
-const mongoose = require("mongoose");
+var db = require(__dirname + "/models");
+
+const multer = require("multer");
+
 const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -12,17 +17,78 @@ app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-// Add routes, both API and view
-app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/justo");
-// Check connection to mongoose
-let db = mongoose.connection;
-db.once('open', () => console.log('connected to db'));
-db.on('error', console.error.bind(console, 'mongoose connection error'));
+// Add routes, both API and view
+// app.use(routes);
 
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
 });
+
+/*-------------------------------------------------------------------------------------------------*/
+/* Everything that is under this is strictly for adding images to the server for the profile page. */
+/*-------------------------------------------------------------------------------------------------*/
+
+app.get("/profilePicUpload", function(req, res){
+	res.writeHead(200, {
+		"Content-Type": "text/html"
+	});
+	fs.readFile("/testFiles/uploadImage.html", "utf8", function(err, data) {
+		if (err) throw err;
+		res.write(data);
+		res.end();
+	});
+});
+
+const handleErrorInProfilePicUpload = (err, res) => {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong with the upload! \n" + err);
+};
+const handleErrorInProfilePicUpload = function(err, res) {
+  res
+    .status(500)
+    .contentType("text/plain")
+    .end("Oops! Something went wrong with the upload! \n" + err);
+};
+
+const upload = multer({
+  dest: "/uploads"
+  // You might also want to set some limits: https://github.com/expressjs/multer#limits
+});
+
+app.post(
+	"/upload/:userid",
+	upload.single("file" /* name attribute of <file> element in your form */),
+	function(req, res){
+		const newFileName = (new Date()).getTime();
+		const tempPath = req.file.path;
+		const targetPath = path.join(__dirname, "./uploads/" + newFileName + ".png");
+			if (path.extname(req.file.originalname).toLowerCase() === ".png") {
+			fs.rename(tempPath, targetPath, err => {
+				if (err) return handleErrorInProfilePicUpload(err, res);
+				db.users.find({where: {id: req.params.userid}}).then(function(users){
+					console.log(users.filteredContent);
+					users.updateAttributes({
+						image: newFileName
+					});
+				});
+				res.status(200).contentType("text/plain").end("File uploaded!");
+			});
+		} else {
+			fs.unlink(tempPath, err => {
+				if (err) return handleErrorInProfilePicUpload(err, res);
+				res
+					.status(403)
+					.contentType("text/plain")
+					.end("Only .png files are allowed!");
+			});
+		}
+	}
+);
+
+/*-------------------------------------------------------------------------------------------------*/
+/* End of profile pic stuff. The rest of this sentence is purely to extend its length to this size */
+/*-------------------------------------------------------------------------------------------------*/
