@@ -4,17 +4,15 @@ import { Col, Image, Label } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
-
-
 function FreelancerCard(props) {
-  
+
 
   return (
     <div className="f-card" xs={12} sm={12} md={4}>
     {/* <span onClick={() => props.showPeople(props.id)} className="show"> */}
     <Link to={"/account/"+props.id}>
 
-    
+
       <Image className="profile-sm" alt={props.name} src={props.image} circle />
       <div className="f-text">
         <p>{props.name}</p>

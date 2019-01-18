@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Wrapper from "../Wrapper";
 import FreelancerCard from "../FreelancerCard";
-import ProfileCard from "../ProfileCard";
+import Timer from "../Timer"
 import freelancers from "../../freelancers.json";
 import { Grid, Row, Col } from "react-bootstrap";
 import "./style.css";
@@ -23,32 +23,21 @@ componentWillMount(){
                 <Wrapper>
                     <Grid>
                         <Row>
+
                             <Col xs={12} sm={12} md={6}>
-                                {/* <button id="upload-link" className="justo-button" >Upload Profile Photo</button> */}
-                                {/* {this.state.freelancers.map(freelancer => ( */}
-
-                                    <FreelancerCard
-                                            name={freelancers[this.state.user_id-1].name}
-                                            image={freelancers[this.state.user_id-1].image}
-                                            active={freelancers[this.state.user_id-1].active}
-                                            showPeople={this.showPeople}
-
-                                    />
-
-                                {/* ))} */}
-
-                                {/* {this.state.freelancers.map(freelancer => (
-
-                                    <ProfileCard
-                                            key={freelancer.id}
-                                            id={freelancer.id}
-                                            name={freelancer.name}
-                                            profession={freelancer.profession}
-                                            rate={freelancer.rate}
-                                    />
-
-                                ))} */}
+                                <button id="upload-link" className="justo-button" >Upload Profile Photo</button>
+                                <FreelancerCard
+                                    name={freelancers[this.state.user_id-1].name}
+                                    image={freelancers[this.state.user_id-1].image}
+                                    active={freelancers[this.state.user_id-1].active}
+                                    showPeople={this.showPeople}
+                                />
                             </Col>
+
+                            <Col xs={12} sm={12} md={6}>
+                                <Timer />
+                            </Col>
+
                         </Row>
                     </Grid>
                 </Wrapper>

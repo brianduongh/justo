@@ -1,11 +1,9 @@
 .p-card {
-  /* padding-top:20px; */
   margin:10px 0px 10px auto;
 }
 
 .p-text {
   margin:auto;
-  max-width:300px;
   text-align:left;
   font-weight:100;
   color:black;
@@ -14,6 +12,7 @@
   background:#ECECEC;
   box-shadow: grey 2px 2px 2px;
   border-radius:6px;
+  max-width: 400px;
 }
 
 @media (min-width: 768px) {

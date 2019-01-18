@@ -15,21 +15,19 @@ class Dashboard extends Component {
     showPeople = id => {
         console.log(this.state.freelancers,id);
         const freelancers = this.state.freelancers.find(freelancer => freelancer.id === id)
-        this.setState({freelancers:[freelancers]});  
+        this.setState({freelancers:[freelancers]});
       };
 
     render() {
         return (
-            <div>        
+            <div>
               <Navs page ="Dashboard" image ="<i class='fas fa-plus'></i>"/>
                 <Wrapper>
                     <Grid>
                         <Row>
 
                         {this.state.freelancers.map(freelancer => (
-
-                            // {freelancers.map(freelancer => (
-                            <FreelancerCard
+                            <FreelancerCard style={{ float:"left"}}
                                 key={freelancer.id}
                                 id={freelancer.id}
                                 name={freelancer.name}
@@ -39,9 +37,7 @@ class Dashboard extends Component {
 
                             />
                             ))}
-                            
 
-                            {/* ))} */}
                         </Row>
                     </Grid>
                 </Wrapper>
@@ -51,4 +47,3 @@ class Dashboard extends Component {
 }
 
 export default Dashboard;
-
