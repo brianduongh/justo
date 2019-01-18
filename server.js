@@ -5,6 +5,11 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+const db = require('./models');
+db.sequelize.sync({ force: false }).then(function() {
+  console.log(true);
+})
+
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -15,12 +20,6 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 app.use(routes);
 
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/justo");
-// Check connection to mongoose
-let db = mongoose.connection;
-db.once('open', () => console.log('connected to db'));
-db.on('error', console.error.bind(console, 'mongoose connection error'));
 
 // Start the API server
 app.listen(PORT, function() {

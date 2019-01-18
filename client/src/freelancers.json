@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Clayton Bondy",
     "image":
-      "images/profile-clay.png",
+      "https://media.npr.org/assets/img/2013/11/05/eric-deggans_-credit-carrie-pratt_simply-blue-studios_vert-0fb27f03157f3beeb9e360584760684cb74c1241-s300-c85.jpg",
     "active": true,
     "rate": 25,
     "profession": "Scenic Designer",
@@ -43,4 +43,3 @@
     "employer": false
   }
 ]
-
