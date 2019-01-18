@@ -9,7 +9,6 @@ function ShowAccount(props) {
         <Navs page ="Account"/>
 		<Account id={props.match.params.id} />
 
-        	Account page
     	</div>
   	);
 }

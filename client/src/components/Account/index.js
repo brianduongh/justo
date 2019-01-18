@@ -28,9 +28,9 @@ componentWillMount(){
                                 {/* {this.state.freelancers.map(freelancer => ( */}
 
                                     <FreelancerCard
-                                            name={freelancers[this.state.user_id].name}
-                                            image={freelancers[1].image}
-                                            active={freelancers[1].active}
+                                            name={freelancers[this.state.user_id-1].name}
+                                            image={freelancers[this.state.user_id-1].image}
+                                            active={freelancers[this.state.user_id-1].active}
                                             showPeople={this.showPeople}
 
                                     />

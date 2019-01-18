@@ -14,7 +14,7 @@ class Dashboard extends Component {
 
     showPeople = id => {
         console.log(this.state.freelancers,id);
-        const freelancers = this.state.freelancers.find(freelancer => freelancer.id === id);
+        const freelancers = this.state.freelancers.find(freelancer => freelancer.id === id)
         this.setState({freelancers:[freelancers]});  
       };
 
