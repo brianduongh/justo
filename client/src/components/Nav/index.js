@@ -4,6 +4,7 @@ import { Navbar, NavItem, Nav } from "react-bootstrap";
 
 
 
+
 // class Navs extends Component {
 function Navs(props){
 

@@ -2,10 +2,6 @@ import React from "react";
 import Navs from "../components/Nav"
 import Account from "../components/Account"
 
-// const image = {
-// 	width:'400px',
-// 	height: 'auto'
-// }
 
 
 function ShowAccount(props) {

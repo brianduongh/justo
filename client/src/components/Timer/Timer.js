@@ -14,7 +14,8 @@ class Timer extends React.Component {
             seconds: 0,
             hourlyPay: 20,
             payAmount: 0,
-            captures: []
+            captures: [],
+
         };
         this.doMath = this.doMath.bind(this)
     }
