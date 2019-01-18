@@ -5,6 +5,7 @@ const sequelize = new Sequelize("mysql:3306/justo");
 var db = require(__dirname + "/models");
 
 const multer = require("multer");
+const fs = require("fs");
 
 const routes = require("./routes");
 const app = express();
@@ -34,19 +35,13 @@ app.get("/profilePicUpload", function(req, res){
 	res.writeHead(200, {
 		"Content-Type": "text/html"
 	});
-	fs.readFile("/testFiles/uploadImage.html", "utf8", function(err, data) {
+	fs.readFile("./testFiles/uploadImage.html", "utf8", function(err, data) {
 		if (err) throw err;
 		res.write(data);
 		res.end();
 	});
 });
 
-const handleErrorInProfilePicUpload = (err, res) => {
-  res
-    .status(500)
-    .contentType("text/plain")
-    .end("Oops! Something went wrong with the upload! \n" + err);
-};
 const handleErrorInProfilePicUpload = function(err, res) {
   res
     .status(500)
