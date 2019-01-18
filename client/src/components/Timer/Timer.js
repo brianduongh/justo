@@ -1,11 +1,15 @@
 import React from "react";
 import "./style.css";
+import Wrapper from "../Wrapper";
 import ProfileTracker from "../ProfileTracker"
+import FreelancerCard from "../FreelancerCard"
 import freelancers from "../../freelancers.json";
+import { Grid, Row, Col } from "react-bootstrap";
+
 
 class Timer extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             timerStarted: false,
             timerStopped: true,
@@ -14,9 +18,17 @@ class Timer extends React.Component {
             seconds: 0,
             hourlyPay: 20,
             payAmount: 0,
-            captures: []
+            captures: [],
+
+            freelancers,
+            user_id: null
         };
         this.doMath = this.doMath.bind(this)
+    }
+
+    componentWillMount(){
+        console.log(this.props.id);
+        this.setState({ user_id: this.props.id })
     }
 
     handleTimerStart(e) {
@@ -72,24 +84,41 @@ class Timer extends React.Component {
     render() {
         return (
             <div>
+                <Wrapper>
+                    <Grid>
+                        <Row>
 
-                <div className="timer-controls">
-                    <button className="btn btn-success" onClick={this.handleTimerStart.bind(this)}>Start Timer</button>
-                    <button className="btn btn-alert" onClick={this.handleTimerStop.bind(this)}>Stop Timer</button>
-                    <button className="btn btn-info" onClick={this.handleTimeCapture.bind(this)}>CalcPayment</button>
-                    <button className="btn btn-danger" onClick={this.handleTimerReset.bind(this)}>Reset</button>
-                </div>
-                
-                <ProfileTracker
-                    key={freelancers[0].id}
-                    id={freelancers[0].id}
-                    name={freelancers[0].name}
-                    profession={freelancers[0].profession}
-                    hours={this.state.hours} minutes={this.state.minutes} seconds= {this.state.seconds} 
-                    rate={freelancers[0].rate} 
-                    payAmount={this.state.payAmount}>
-                </ProfileTracker>
-                
+                            <Col xs={12} sm={12} md={6}>
+                                <button id="upload-link" className="justo-button" >Upload Profile Photo</button>
+                                <FreelancerCard
+                                    name={freelancers[this.state.user_id].name}
+                                    image={"../" + freelancers[this.state.user_id].image}
+                                    active={freelancers[this.state.user_id].active}
+                                    showPeople={this.showPeople}
+                                />
+                            </Col>
+
+                            <Col xs={12} sm={12} md={6}>
+                                <div className="timer-controls">
+                                    <button className="btn btn-success" onClick={this.handleTimerStart.bind(this)}>Start Timer</button>
+                                    <button className="btn btn-alert" onClick={this.handleTimerStop.bind(this)}>Stop Timer</button>
+                                    <button className="btn btn-info" onClick={this.handleTimeCapture.bind(this)}>CalcPayment</button>
+                                    <button className="btn btn-danger" onClick={this.handleTimerReset.bind(this)}>Reset</button>
+                                </div>
+                                <ProfileTracker
+                                    key={freelancers[0].id}
+                                    id={freelancers[this.state.user_id].id}
+                                    name={freelancers[this.state.user_id].name}
+                                    profession={freelancers[this.state.user_id].profession}
+                                    hours={this.state.hours} minutes={this.state.minutes} seconds= {this.state.seconds} 
+                                    rate={freelancers[this.state.user_id].rate} 
+                                    payAmount={this.state.payAmount}>
+                                </ProfileTracker>
+                            </Col>
+
+                        </Row>
+                    </Grid>
+                </Wrapper>
             </div>
         )
     }
