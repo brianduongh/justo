@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Col, Image, Label } from "react-bootstrap";
+import { Image, Label } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
@@ -14,12 +14,13 @@ function FreelancerCard(props) {
 
     
       <Image className="profile-sm" alt={props.name} src={props.image} circle />
+      </Link>
+
       <div className="f-text">
         <p>{props.name}</p>
         {!props.active ? <p><Label bsStyle="default">Idle</Label></p> : <p><Label bsStyle="success">Active{props.active}</Label></p>}
       </div>
       {/* </span> */}
-      </Link>
 
     </div>
   );

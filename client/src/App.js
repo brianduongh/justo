@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard1 from "./pages/Dashboard";
 import ShowAccount from "./pages/Account";
 import Landing from "./pages/Landing";
-import SignOut from "./pages/SignOut";
+// import SignOut from "./pages/SignOut";
 
 function App() {
   return (
@@ -13,7 +13,6 @@ function App() {
           <Route exact path="/" component={Landing} />
           <Route exact path="/dashboard" component={Dashboard1} />
           <Route exact path="/signout" component={Landing} />
-
           <Route path="/account/:id" component={ShowAccount} />
         
     </div>
