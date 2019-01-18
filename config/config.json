@@ -1,23 +1,22 @@
 {
   "development": {
     "username": "root",
-    "password": "Fib11235!",
-    "database": "justo",
+    "password": "root",
+    "database": "blog",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": 8889
   },
   "test": {
     "username": "root",
-    "password": "Fib11235!",
-    "database": "justo",
+    "password": "root",
+    "database": "blog",
     "host": "127.0.0.1",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": 8889
   },
   "production": {
-    "username": "root",
-    "password": "Fib11235!",
-    "database": "justo",
-    "host": "127.0.0.1",
+    "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql"
   }
 }
