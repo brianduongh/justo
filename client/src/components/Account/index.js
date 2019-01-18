@@ -7,6 +7,15 @@ import { Grid, Row, Col } from "react-bootstrap";
 import "./style.css";
 
 class Account extends Component {
+    state ={
+        freelancers,
+        user_id: null
+    }
+    
+componentWillMount(){
+    console.log(this.props.id);
+    this.setState({ user_id: this.props.id })
+}
 
     render() {
         return (
@@ -14,16 +23,17 @@ class Account extends Component {
                 <Wrapper>
                     <Grid>
                         <Row>
-                            <Col xs={12} sm={12} md={5}>
-                                <div>
-                                    {/* <button className="justo-button" >Upload Profile Photo</button> */}
+
+                            <Col xs={12} sm={12} md={6}>
+                                {/* <button id="upload-link" className="justo-button" >Upload Profile Photo</button> */}
+                               
+
                                     <FreelancerCard
-                                        key={freelancers[0].id}
-                                        name={freelancers[0].name}
-                                        image={freelancers[0].image}
-                                        active={freelancers[0].active}
+                                            name={freelancers[this.state.user_id-1].name}
+                                            image={freelancers[this.state.user_id-1].image}
+                                            active={freelancers[this.state.user_id-1].active}
+                                            showPeople={this.showPeople}
                                     />
-                                </div>
                             </Col>
                             <Col xs={12} sm={12} md={6}>
                                 <Timer />

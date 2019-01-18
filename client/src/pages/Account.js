@@ -3,11 +3,11 @@ import Navs from "../components/Nav"
 import Account from "../components/Account"
 
 
-function ShowAccount() {
+function ShowAccount(props) {
 	return (
     	<div>
         <Navs page ="Account"/>
-		<Account/>
+		<Account id={props.match.params.id} />
     	</div>
   	);
 }
