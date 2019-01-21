@@ -3,14 +3,14 @@ div.row {
 }
 
 .profile-sm {
-  height: 200px;
+  height: 250px;
   overflow: hidden;
   text-align: center;
   box-shadow: rgb(59, 59, 59) 3px 3px 10px;
 }
 
 .f-card {
-  padding-top:10px;
+  margin:0px 40px 10px 40px;
   display:inline-block;
 }
 
@@ -18,7 +18,11 @@ div.row {
   font-weight:100;
   color:#ECECEC;
   padding:15px;
-  font-size:20px;
+  font-size:18px;
+}
+
+#upload-link {
+  margin: 0px auto 20px auto;
 }
 
 .label-default {

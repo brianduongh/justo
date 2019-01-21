@@ -89,8 +89,8 @@ class Timer extends React.Component {
                         <Row>
 
                             <Col xs={12} sm={12} md={6}>
-                                <button id="upload-link" className="justo-button" >Upload Profile Photo</button>
-                                <FreelancerCard
+                                <FreelancerCard 
+                                    account= {freelancers[this.state.user_id].name}
                                     name={freelancers[this.state.user_id].name}
                                     image={"../" + freelancers[this.state.user_id].image}
                                     active={freelancers[this.state.user_id].active}
@@ -99,12 +99,6 @@ class Timer extends React.Component {
                             </Col>
 
                             <Col xs={12} sm={12} md={6}>
-                                <div className="timer-controls">
-                                    <button className="btn btn-success" onClick={this.handleTimerStart.bind(this)}>Start Timer</button>
-                                    <button className="btn btn-alert" onClick={this.handleTimerStop.bind(this)}>Stop Timer</button>
-                                    <button className="btn btn-info" onClick={this.handleTimeCapture.bind(this)}>CalcPayment</button>
-                                    <button className="btn btn-danger" onClick={this.handleTimerReset.bind(this)}>Reset</button>
-                                </div>
                                 <ProfileTracker
                                     key={freelancers[0].id}
                                     id={freelancers[this.state.user_id].id}
@@ -114,6 +108,13 @@ class Timer extends React.Component {
                                     rate={freelancers[this.state.user_id].rate} 
                                     payAmount={this.state.payAmount}>
                                 </ProfileTracker>
+                                <div className="timer-controls">
+                                    <div style={{ paddingTop:"20px",color:"#ECECEC" }}>Use the buttons below to track your progress:</div>
+                                    <button className="timer-buttons" onClick={this.handleTimerStart.bind(this)}><span class="glyphicon glyphicon-play"></span></button>
+                                    <button className="timer-buttons" onClick={this.handleTimerStop.bind(this)}><span class="glyphicon glyphicon-pause"></span></button>
+                                    <button className="timer-buttons" onClick={this.handleTimeCapture.bind(this)}><span class="glyphicon glyphicon-usd"></span></button>
+                                    <button className="timer-buttons" onClick={this.handleTimerReset.bind(this)}><span class="glyphicon glyphicon-refresh"></span></button>
+                                </div>
                             </Col>
 
                         </Row>

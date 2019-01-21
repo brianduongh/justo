@@ -1,5 +1,4 @@
 import Navs from "../components/Nav"
-
 import React, { Component } from "react";
 import Wrapper from "../components/Wrapper";
 import FreelancerCard from "../components/FreelancerCard";
@@ -34,7 +33,6 @@ class Dashboard extends Component {
                                 image={freelancer.image}
                                 active={freelancer.active}
                                 showPeople={this.showPeople}
-
                             />
                             ))}
 
