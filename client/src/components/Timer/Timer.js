@@ -110,10 +110,10 @@ class Timer extends React.Component {
                                 </ProfileTracker>
                                 <div className="timer-controls">
                                     <div style={{ paddingTop:"20px",color:"#ECECEC" }}>Use the buttons below to track your progress:</div>
-                                    <button className="timer-buttons" onClick={this.handleTimerStart.bind(this)}><span class="glyphicon glyphicon-play"></span></button>
-                                    <button className="timer-buttons" onClick={this.handleTimerStop.bind(this)}><span class="glyphicon glyphicon-pause"></span></button>
-                                    <button className="timer-buttons" onClick={this.handleTimeCapture.bind(this)}><span class="glyphicon glyphicon-usd"></span></button>
-                                    <button className="timer-buttons" onClick={this.handleTimerReset.bind(this)}><span class="glyphicon glyphicon-refresh"></span></button>
+                                    <button className="timer-buttons" onClick={this.handleTimerStart.bind(this)}><span className="glyphicon glyphicon-play"></span></button>
+                                    <button className="timer-buttons" onClick={this.handleTimerStop.bind(this)}><span className="glyphicon glyphicon-pause"></span></button>
+                                    <button className="timer-buttons" onClick={this.handleTimeCapture.bind(this)}><span className="glyphicon glyphicon-usd"></span></button>
+                                    <button className="timer-buttons" onClick={this.handleTimerReset.bind(this)}><span className="glyphicon glyphicon-refresh"></span></button>
                                 </div>
                             </Col>
 
