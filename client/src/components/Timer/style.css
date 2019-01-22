@@ -1,4 +1,9 @@
-
 h2 {
     color: sienna;
+}
+
+.timer-buttons {
+    padding: 5px 15px 5px 15px;
+    margin: 20px 5px 20px 5px;
+    border-radius: 6px;
 }

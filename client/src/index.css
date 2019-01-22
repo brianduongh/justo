@@ -13,7 +13,7 @@ html, body, #root {
 
 .landing-logo {
   margin:auto;
-  padding-top:20px;
+  padding-top:0px;
   display:block;
   width:400px;
   max-width:80%;
@@ -21,12 +21,13 @@ html, body, #root {
 
 .text-block {
   margin:auto;
+  text-align: justify;
   text-indent: 30px;
   font-size:16px;
   color:#ECECEC;
-  width:600px;
+  width:500px;
   max-width:80%;
-  padding-bottom:10px;
+  padding-bottom:20px;
 }
 
 .landing-page {

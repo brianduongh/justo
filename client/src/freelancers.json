@@ -1,12 +1,22 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "name": "Clayton Bondy",
     "image":
-      "https://media.npr.org/assets/img/2013/11/05/eric-deggans_-credit-carrie-pratt_simply-blue-studios_vert-0fb27f03157f3beeb9e360584760684cb74c1241-s300-c85.jpg",
+      "images/profile-clay.png",
     "active": true,
     "rate": 25,
     "profession": "Scenic Designer",
+    "employer": false
+  },
+  {
+    "id": 1,
+    "name": "Issac Hormel",
+    "image":
+      "images/profile-isaac.png",
+    "active": true,
+    "rate": 30,
+    "profession": "Back-end Web Developer",
     "employer": false
   },
   {
@@ -14,32 +24,30 @@
     "name": "Peng Si",
     "image":
     "images/profile-peng.png",
-    "active": false,
+    "active": true,
+    "rate": 25,
+    "profession": "Front-end Web Developer",
     "employer": false
   },
   {
     "id": 3,
-    "name": "Isaac Hormel",
+    "name": "Anna Park",
     "image":
-    "images/profile-isaac.png",
-    "active": true,
+    "images/profile-anna.png",
+    "rate": 25,
+    "profession": "Front-end Web Developer",
+    "active": false,
     "employer": false
   },
   {
     "id": 4,
-    "name": "Anna Park",
-    "image":
-    "images/profile-anna.png",
-    "rate": 20,
-    "active": false,
-    "employer": false
-  },
-  {
-    "id": 5,
     "name": "Brian Duong",
     "image":
     "images/profile-brian.png",
+    "rate": 30,
+    "profession": "Back-end Web Developer",
     "active": false,
     "employer": false
   }
 ]
+
