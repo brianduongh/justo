@@ -2,7 +2,7 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "blog",
+    "database": "justo",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "port": 8889
@@ -10,7 +10,7 @@
   "test": {
     "username": "root",
     "password": "root",
-    "database": "blog",
+    "database": "justo",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "port": 8889
