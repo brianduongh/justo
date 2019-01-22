@@ -41,7 +41,7 @@ function addUsers(){
 				email:      users[i][0] + users[i][1] + "@example.com",
 				password:   bc.hashSync(users[i][0]+users[i][1])
 			}).then(function(result){
-
+				
 			});
 		}
 		resolve(users);
@@ -92,7 +92,7 @@ function addTheRest(times){
 								term_summery: lorem,
 								posting_employee: posting_employeesRes.dataValues.id
 							}).then(function(termRes){
-
+								
 							});
 						}
 					});
@@ -103,5 +103,5 @@ function addTheRest(times){
 				addTheRest(times-1);
 			}
 		});
-
+	
 }
