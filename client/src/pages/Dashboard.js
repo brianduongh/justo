@@ -8,7 +8,7 @@ import { Grid, Row } from "react-bootstrap";
 class Dashboard extends Component {
 
     state ={
-        freelancers
+      freelancers
     }
 
     showPeople = id => {

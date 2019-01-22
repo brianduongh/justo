@@ -1,6 +1,6 @@
 const express = require("express");
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("mysql:3306/justo");
+const sequelize = new Sequelize("mysql:8889/justo");
 
 var db = require(__dirname + "/models");
 
@@ -36,15 +36,15 @@ db.sequelize.sync({force: false}).then(function() {
 
 /* -----------------------ONLY-UTILS-GO-HERE!----------------------- */
 
-/* 
-   This takes a request, and returns a promise with the relevent 
-   JSON as a parameter. 
+/*
+   This takes a request, and returns a promise with the relevent
+   JSON as a parameter.
 */
 function extractJSONFromRequest(req){
 	var prom = new Promise(function(resolve, reject){
 		resolve(req.body);
 	});
-	
+
 	return prom;
 }
 module.exports.extractJSONFromRequest = extractJSONFromRequest;
@@ -63,19 +63,19 @@ function extractCookiesFromRequest(req){
 }
 module.exports.extractCookiesFromRequest = extractCookiesFromRequest;
 
-/* 
-   This nice little function just generates a random id of letters 
-   and numbers at the length of the param "lengthOfRandomId". 
+/*
+   This nice little function just generates a random id of letters
+   and numbers at the length of the param "lengthOfRandomId".
 */
 function generateRandomId(lengthOfRandomId){
 	var id = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	
+
 	for (let i = 0; i < lengthOfRandomId; i++){
 		id += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
 	return id;
-	
+
 }
 module.exports.generateRandomId = generateRandomId;
 /* ----------------------------------------------------------- */
@@ -102,7 +102,7 @@ const handleErrorInProfilePicUpload = function(err, res) {
 };
 
 const upload = multer({
-  dest: "/uploads"
+  dest: "./uploads"
   // You might also want to set some limits: https://github.com/expressjs/multer#limits
 });
 
@@ -140,11 +140,13 @@ app.post(
 app.post("/api/attemptLogin", function(req, res){
 	extractJSONFromRequest(req).then(function(data){
 		console.log("--------WTF: " + JSON.stringify(data) );
+    console.log(data);
 		db.users.find({
 			where: {
 				email: data.email
 			}
 		}).then(function(user){
+      console.log(user);
 			if(user){
 				if(bc.compareSync(data.password, user.password)){
 					var sessionId = generateRandomId(255);
@@ -153,16 +155,16 @@ app.post("/api/attemptLogin", function(req, res){
 						session_id: bc.hashSync(sessionId, salt),
 						session_user_id: user.id
 					}).then(function(sess){
-						
+
 					});
 					res.writeHead(200, {
 						"Set-Cookie": [
-							"session_id=" + sessionId + "; Secure; path=/;", 
+							"session_id=" + sessionId + "; Secure; path=/;",
 							"salt=" + salt + "; Secure; path=/;"
 						],
 						"Content-Type": "application/json"
 					});
-					res.end( JSON.stringify({successMessage: "Welcome " + user.first_name}) );
+					res.end( JSON.stringify({ user }) );
 				}else{
 					res.setHeader("Content-Type", "application/json");
 					res.end( JSON.stringify({failureMessage: "Login failed. One of the fields entered were incorrect. "}) );
@@ -173,6 +175,5 @@ app.post("/api/attemptLogin", function(req, res){
 			}
 		});
 	});
-	
-});
 
+});
