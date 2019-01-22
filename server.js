@@ -11,7 +11,6 @@ const routes = require("./routes");
 const app = express();
 const PORT = process.env.PORT || 5001;
 
-const db = require('./models');
 db.sequelize.sync({ force: false }).then(function() {
   console.log(true);
 })
@@ -52,7 +51,7 @@ const handleErrorInProfilePicUpload = function(err, res) {
 };
 
 const upload = multer({
-  dest: "/uploads"
+  dest: "./uploads"
   // You might also want to set some limits: https://github.com/expressjs/multer#limits
 });
 
