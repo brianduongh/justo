@@ -22,7 +22,7 @@ class AddUser extends React.Component {
 
         <div>
           <button onClick={() => this.setState({ show: true })} className="button-refresh">
-              <img src="images/user.png" />
+              <img src="images/user.png" alt="New User"/>
           </button>
         </div>
 

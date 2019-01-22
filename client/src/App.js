@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Dashboard1 from "./pages/Dashboard";
 import ShowAccount from "./pages/Account";
 import Landing from "./pages/Landing";
-import SignOut from "./pages/SignOut";
 
 function App() {
   return (

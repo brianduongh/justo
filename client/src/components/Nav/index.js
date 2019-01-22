@@ -1,20 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import "./style.css";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
 
-const navStyle = {
-	display: 'none'
-}
+// const navStyle = {
+// 	display: 'none'
+// }
 
 // const title ={
 // 	left: '50%'
 // }
 
-
 // class Navs extends Component {
 function Navs(props){
-
-
 
 	// state ={
 	// 	background: "#544F4F"

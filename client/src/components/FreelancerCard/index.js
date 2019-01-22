@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.css";
-import { Col, Image, Label } from "react-bootstrap";
+import { Image, Label } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 
