@@ -4,6 +4,7 @@ import FreelancerCard from "../FreelancerCard";
 import Timer from "../Timer"
 import freelancers from "../../freelancers.json";
 import { Grid, Row, Col } from "react-bootstrap";
+import Upload from "../Upload"
 import "./style.css";
 
 class Account extends Component {
@@ -25,7 +26,7 @@ componentWillMount(){
                         <Row>
 
                             <Col xs={12} sm={12} md={6}>
-                                <button id="upload-link" className="justo-button" >Upload Profile Photo</button>
+                                <Upload />
                                 <FreelancerCard
                                     name={freelancers[this.state.user_id-1].name}
                                     image={freelancers[this.state.user_id-1].image}

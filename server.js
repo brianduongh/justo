@@ -1,8 +1,9 @@
+const path = require('path');
 const express = require("express");
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("mysql:3306/justo");
+const sequelize = new Sequelize("mysql:8889/justo");
 
-var db = require(__dirname + "/models");
+//var db = require(__dirname + "/models");
 
 const multer = require("multer");
 const fs = require("fs");
@@ -37,7 +38,9 @@ app.get("/profilePicUpload", function(req, res){
 	res.writeHead(200, {
 		"Content-Type": "text/html"
 	});
-	fs.readFile("./testFiles/uploadImage.html", "utf8", function(err, data) {
+	fs.readFile("./client/src/components/Upload/index.js"
+		// "./testFiles/uploadImage.html"
+		, "utf8", function(err, data) {
 		if (err) throw err;
 		res.write(data);
 		res.end();
@@ -52,7 +55,7 @@ const handleErrorInProfilePicUpload = function(err, res) {
 };
 
 const upload = multer({
-  dest: "/uploads"
+  dest:path.join(__dirname,  "/uploads")
   // You might also want to set some limits: https://github.com/expressjs/multer#limits
 });
 

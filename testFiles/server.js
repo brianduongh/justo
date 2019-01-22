@@ -44,7 +44,7 @@ const handleErrorInProfilePicUpload = (err, res) => {
 };
 
 const upload = multer({
-  dest: "/uploads"
+  dest: path.join(__dirname, "/uploads")
   // you might also want to set some limits: https://github.com/expressjs/multer#limits
 });
 
