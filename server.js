@@ -3,7 +3,7 @@ const express = require("express");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql:8889/justo");
 
-//var db = require(__dirname + "/models");
+var db = require(__dirname + "/models");
 
 var bc = require("bcrypt-nodejs");
 
@@ -98,7 +98,7 @@ const upload = multer({
 });
 
 app.post(
-	"/upload/:userid",
+	"/account/:userid",
 	upload.single("file" /* name attribute of <file> element in your form */),
 	function(req, res){
 		const newFileName = (new Date()).getTime();
@@ -112,8 +112,10 @@ app.post(
 						image: newFileName
 					});
 				});
+				console.log(req.path)
 				// res.json({success:true});
-				res.redirect("/account/" + req.params.userid)
+				// res.redirect("/account/" + req.params.userid)
+				res.redirect(req.path)
 
 			});
 		} else {

@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import freelancers from "../../freelancers.json";
+// import freelancers from "../../freelancers.json";
 
 
 class Upload extends React.Component {
@@ -12,15 +12,15 @@ class Upload extends React.Component {
   
       this.state = {
         show: false,
-        freelancers,
-        user_id: null 
+        // freelancers,
+        // user_id: null 
       };
     }
 
-    componentWillMount(){
-        console.log(this.props.id);
-        this.setState({ user_id: this.props.id })
-    }
+    // componentWillMount(){
+    //     console.log(this.props.id);
+    //     this.setState({ user_id: this.props.id })
+    // }
 
     handleClose() {
       this.setState({ show: false });
@@ -45,7 +45,7 @@ class Upload extends React.Component {
             </Modal.Header>
             <Modal.Body >
                 <div>
-                    <form method="post" enctype="multipart/form-data" action="/upload/3" >
+                    <form method="post" enctype="multipart/form-data" action={`/account/${this.props.id}`}>
                         <input type="file" name="file"/>
                         <input type="submit" value="Submit"/>
                     </form>
