@@ -27,4 +27,4 @@ Justo acts as the go-between for businesses and freelancers. It resembles a simp
 * Coding Standards 
 
 ### UX Wireframe
-<img src="https://github.com/brianduongh/justo/blob/1Cbondy1-patch-1/client/public/images/justo-ux-wireframe.jpg?raw=true" width="900">
+<img src="https://github.com/brianduongh/justo/blob/master/client/public/images/justo-ux-wireframe.jpg?raw=true" width="900">
