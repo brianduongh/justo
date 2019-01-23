@@ -35,9 +35,9 @@ class Login extends Component {
     const { email, password } = this.state;
     return(
 
-      <div className="login-page">
+      <div>
       <Navs page ="Justo" style={styling}/>
-
+      <div className="login-page">
         <form onSubmit={this.handleSubmit}>
         <h1>Login</h1>
           <FormGroup>
@@ -58,6 +58,7 @@ class Login extends Component {
           </FormGroup>
           <Button className="justo-button" type="submit">Submit</Button>
         </form>
+      </div>
       </div>
     )
   }
