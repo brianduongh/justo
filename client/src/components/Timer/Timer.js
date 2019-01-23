@@ -90,7 +90,6 @@ class Timer extends React.Component {
 
                             <Col xs={12} sm={12} md={6}>
                                 <FreelancerCard 
-                                    account= {freelancers[this.state.user_id].name}
                                     name={freelancers[this.state.user_id].name}
                                     image={"../" + freelancers[this.state.user_id].image}
                                     active={freelancers[this.state.user_id].active}
