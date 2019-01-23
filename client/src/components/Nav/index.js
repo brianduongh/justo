@@ -18,7 +18,7 @@ function Navs(props){
 					</Navbar.Header>
 
 					<Navbar.Collapse > 
-						<Nav >
+						<Nav pullRight>
 							<NavItem eventKey={1} href="/dashboard" style={props.style}>
 								Dashboard
 							</NavItem>

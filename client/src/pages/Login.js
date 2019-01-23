@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
+import Navs from "../components/Nav"
+
 import axios from 'axios';
+
+
+const styling ={
+  display:'none'
+}
 
 class Login extends Component {
   state = {
@@ -27,7 +34,10 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return(
+
       <div className="login-page">
+      <Navs page ="Justo" style={styling}/>
+
         <form onSubmit={this.handleSubmit}>
         <h1>Login</h1>
           <FormGroup>

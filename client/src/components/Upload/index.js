@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Modal } from "react-bootstrap";
 import "./style.css";
 
+
 // import freelancers from "../../freelancers.json";
 
 

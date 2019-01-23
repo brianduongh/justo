@@ -5,6 +5,7 @@ import FreelancerCard from "../components/FreelancerCard";
 import AddUser from "../components/AddUser";
 import freelancers from "../freelancers.json";
 import { Grid, Row } from "react-bootstrap";
+import axios from "axios";
 
 class Dashboard extends Component {
 
@@ -17,6 +18,17 @@ class Dashboard extends Component {
         const freelancers = this.state.freelancers.find(freelancer => freelancer.id === id)
         this.setState({freelancers:[freelancers]});
       };
+
+      componentDidMount() {
+        axios.get('/api/allUsers', () => {
+          console.log(true)
+        }).then(res => {
+          console.log(res.data.users);
+          this.setState({
+            freelancers: res.data.users
+          })
+        })
+      }
 
     render() {
         return (
