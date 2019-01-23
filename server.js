@@ -205,18 +205,37 @@ app.post("/api/attemptLogin", function(req, res){
 /* This adds a new user to the database. */
 app.post("/api/newUser", function(req, res){
 	var cookies = req.cookies;
-	db.users.create({
-		first_name:      data.first_name,
-		last_name:       data.last_name,
-		email:           data.email,
-		password:        bc.hashSync(data.password),
-		image:           data.image,
-		user_type:       data.user_type,
-		user_rate:       data.user_rate || null,
-		user_profession: data.user_profession || null,
-		user_title:      data.user_title || null
-	}).then(function(newUser){
+	extractJSONFromRequest(req).then(function(data){
+		db.users.create({
+			first_name:      data.first_name,
+			last_name:       data.last_name,
+			email:           data.email,
+			password:        bc.hashSync(data.password),
+			image:           data.image,
+			user_type:       data.user_type,
+			user_rate:       data.user_rate || null,
+			user_profession: data.user_profession || null,
+			user_title:      data.user_title || null
+		}).then(function(newUser){
+			res.setHeader("Content-Type", "application/json");
+			res.end( JSON.stringify({message: "Successfully created new user " + JSON.stringify(newUser) }) );
+		});
+	});
+});
+
+/* This is what allows users to log out. */
+app.post("/api/logout", function(req, res){
+	var cookies = req.cookies;
+	db.sessions.destroy({
+		where: {
+			session_id: bc.hashSync(cookies.session_id, cookies.salt)
+		}
+	}).then(function(destroyed){
 		res.setHeader("Content-Type", "application/json");
-		res.end( JSON.stringify({message: "Successfully created new user " + JSON.stringify(newUser) }) );
+		if(destroyed){
+			res.end( JSON.stringify({message: "Logged user " + destroyed.session_id + " out."}) );
+		}else{
+			res.end( JSON.stringify({message: "Attempted to log user out, but they were already logged out!"}) );
+		}
 	});
 });
