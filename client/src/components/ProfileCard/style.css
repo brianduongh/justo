@@ -1,0 +1,48 @@
+div.row {
+  margin:auto;
+}
+
+.profile-sm {
+  height: 250px;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: rgb(59, 59, 59) 3px 3px 10px;
+}
+
+.f-card {
+  margin:0px 40px 10px 40px;
+  display:inline-block;
+}
+
+.f-text {
+  font-weight:100;
+  color:#ECECEC;
+  padding:15px;
+  font-size:18px;
+}
+
+#upload-link {
+  margin: 0px auto 20px auto;
+}
+
+.label-default {
+  background:#ECECEC;
+  display: inline;
+  padding: .2em .6em .3em;
+  font-weight:100;
+  color: #424244;
+  text-align: center;
+  vertical-align: baseline;
+  border-radius: .25em;
+}
+
+.label-success {
+  background:#00DA51;
+  display: inline;
+  padding: .2em .6em .3em;
+  font-weight:100;
+  color: #ECECEC;
+  text-align: center;
+  vertical-align: baseline;
+  border-radius: .25em;
+}

@@ -1,22 +1,8 @@
 import React from "react";
 import "./style.css";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
-// const title ={
-// 	left: '50%'
-// }
 
-// class Navs extends Component {
 function Navs(props){
-
-	// state ={
-	// 	background: "#544F4F"
-	// };
-
-	// changeColor = () => {
-	// 	this.setState({background:"white"});
-	// };
-
-	// render(props){
 
 		return (
 			<div>
@@ -36,7 +22,10 @@ function Navs(props){
 							<NavItem eventKey={1} href="/dashboard">
 								Dashboard
 							</NavItem>
-							<NavItem eventKey={2} href="/signout">
+							<NavItem eventKey={2} href="/profile">
+								Profile
+							</NavItem>
+							<NavItem eventKey={3} onClick={props.logout} href="/">
 								Sign Out
 							</NavItem>
 						</Nav>
@@ -45,8 +34,6 @@ function Navs(props){
 				</Navbar>
 			</div>
 		)
-	// }
-// }
 }
 
 export default Navs;

@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require("express");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql:8889/justo");
@@ -21,7 +22,7 @@ const moment = require("moment");
 
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3000;
 
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
@@ -93,8 +94,6 @@ function extractJSONFromRequest(req){
 }
 module.exports.extractJSONFromRequest = extractJSONFromRequest;
 
-
-
 function generateRandomId(lengthOfRandomId){
 	var id = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -115,7 +114,9 @@ app.get("/profilePicUpload", function(req, res){
 	res.writeHead(200, {
 		"Content-Type": "text/html"
 	});
-	fs.readFile("./testFiles/uploadImage.html", "utf8", function(err, data) {
+	fs.readFile("./client/src/components/Upload/index.js"
+		// "./testFiles/uploadImage.html"
+		, "utf8", function(err, data) {
 		if (err) throw err;
 		res.write(data);
 		res.end();
@@ -130,12 +131,40 @@ const handleErrorInProfilePicUpload = function(err, res) {
 };
 
 const upload = multer({
-  dest: "./uploads"
+  dest:path.join(__dirname,  "/uploads")
   // You might also want to set some limits: https://github.com/expressjs/multer#limits
 });
 
+app.get('/api/allUsers', function(req,res) {
+  //res.send(true);
+  console.log(false);
+  var cookies = req.cookies;
+	console.log("--------------" + JSON.stringify(cookies) );
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.findAll()
+        .then(function(data){
+					res.json({ users: data });
+          // .then(function(newPosting){
+					// 	res.setHeader("Content-Type", "application/json");
+					// 	res.end( JSON.stringify({message: "Successfully created new posting " + JSON.stringify(newPosting) }) );
+					// });
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
+	});
+})
+
 app.post(
-	"/upload/:userid",
+	"/account/:userid",
 	upload.single("file" /* name attribute of <file> element in your form */),
 	function(req, res){
 		const newFileName = (new Date()).getTime();
@@ -149,7 +178,11 @@ app.post(
 						image: newFileName
 					});
 				});
-				res.status(200).contentType("text/plain").end("File uploaded!");
+				console.log(req.path)
+				// res.json({success:true});
+				// res.redirect("/account/" + req.params.userid)
+				res.redirect(req.path)
+
 			});
 		} else {
 			fs.unlink(tempPath, err => {
@@ -157,7 +190,7 @@ app.post(
 				res
 					.status(403)
 					.contentType("text/plain")
-					.end("Only .png files are allowed!");
+					.end("Only .png files allowed");
 			});
 		}
 	}
@@ -186,7 +219,7 @@ app.post("/api/attemptLogin", function(req, res){
 					}).then(function(sess){
 						res.writeHead(200, {
 							"Set-Cookie": [
-								"session_id=" + sessionId + "; HttpOnly;  path=/;", 
+								"session_id=" + sessionId + "; HttpOnly;  path=/;",
 								"salt=" + salt + "; HttpOnly;  path=/;"
 							],
 							"Content-Type": "application/json"
@@ -261,16 +294,14 @@ app.post("/api/newPosting", function(req, res){
 /* This adds a new user to the database. */
 app.post("/api/newUser", function(req, res){
 	var cookies = req.cookies;
-	extractJSONFromRequest(req).then(function(data){
-		db.users.create({
-			first_name: data.first_name,
-			last_name:  data.last_name,
-			email:      data.email,
-			password:   bc.hashSync(data.password)
-		}).then(function(newUser){
-			res.setHeader("Content-Type", "application/json");
-			res.end( JSON.stringify({message: "Successfully created new user " + JSON.stringify(newUser) }) );
-		});
+	db.users.create({
+		first_name: data.first_name,
+		last_name:  data.last_name,
+		email:      data.email,
+		password:   bc.hashSync(data.password)
+	}).then(function(newUser){
+		res.setHeader("Content-Type", "application/json");
+		res.end( JSON.stringify({message: "Successfully created new user " + JSON.stringify(newUser) }) );
 	});
 });
 

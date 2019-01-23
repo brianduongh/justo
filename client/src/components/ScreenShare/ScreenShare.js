@@ -121,7 +121,7 @@ class ScreenShare extends React.Component {
 
     // Obtain a token from the server in order to connect to the Room.
     getToken = id => {
-        $.getJSON('http://localhost:3001/token?identity=' + encodeURIComponent(id),  data => {
+        $.getJSON('/token?identity=' + encodeURIComponent(id),  data => {
             console.log("getData: " + JSON.stringify(data))
             this.setState({ data: data });
             this.log("Ready and connected as '" + this.state.data.identity + "'...");
