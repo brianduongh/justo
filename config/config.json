@@ -1,11 +1,11 @@
 {
   "development": {
     "username": "root",
-    "password": "Fib11235!",
+    "password": "root",
     "database": "justo",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": 3306
+    "port": 8889
   },
   "test": {
     "username": "root",
@@ -13,7 +13,7 @@
     "database": "justo",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "port": 3306
+    "port": 8889
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",

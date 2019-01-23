@@ -14,7 +14,7 @@ function ProfileForms(props) {
                 <Grid>
                     <Row>
                         <Col style={{ paddingBottom:"20px"}} xs={12} sm={12} md={6}>
-                            <ProfileCard 
+                            <ProfileCard
                                 image={"../" + freelancers[props.id].image}
                             />
                         </Col>
@@ -27,31 +27,31 @@ function ProfileForms(props) {
                                     </p><hr/>
                                     <form>
                                         <p>
-                                            <strong>Username: </strong> 
+                                            <strong>Username: </strong>
                                             <input data_id={props.id} type="text" name="username" />
                                         </p><hr/>
                                     </form>
                                     <form>
                                         <p>
-                                            <strong>Password: </strong> 
+                                            <strong>Password: </strong>
                                             <input data_id={props.id} type="text" name="password" />
                                         </p><hr/>
                                     </form>
                                     <form>
                                         <p>
-                                            <strong>Name: </strong> 
+                                            <strong>Name: </strong>
                                             <input data_id={props.id} type="text" name="name" />
                                         </p><hr/>
                                     </form>
                                     <form>
                                         <p>
-                                            <strong>Profession: </strong> 
+                                            <strong>Profession: </strong>
                                             <input data_id={props.id} type="text" name="profession" />
                                         </p><hr/>
                                     </form>
                                     <form>
-                                        <p>     
-                                            <strong>Rate/hour: </strong> 
+                                        <p>
+                                            <strong>Rate/hour: </strong>
                                             <input data_id={props.id} type="text" name="rate" />
                                         </p><hr/>
                                     </form>

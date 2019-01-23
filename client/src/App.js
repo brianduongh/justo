@@ -6,6 +6,7 @@ import ShowAccount from "./pages/Account";
 import ShowProfile from "./pages/Profile";
 import Landing from "./pages/Landing";
 import Login from './pages/Login';
+import Signup from './pages/Signup';
 import history from './history';
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <div>
         <Route exact path="/" component={Landing} />
         <Route exact path="/login" component={Login} />
+        <Route exact path="/signup" component={Signup} />
         <Route exact path="/dashboard" component={Dashboard1} />
         <Route exact path="/signout" component={Landing} />
         <Route path="/account/:id" component={ShowAccount} />
