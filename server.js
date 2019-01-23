@@ -2,6 +2,12 @@ const express = require("express");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql:8889/justo");
 
+const twilio = require('twilio');
+const AccessToken = twilio.jwt.AccessToken;
+const VideoGrant = AccessToken.VideoGrant;
+
+
+
 var db = require(__dirname + "/models");
 
 var bc = require("bcrypt-nodejs");
@@ -19,6 +25,39 @@ const PORT = process.env.PORT || 3001;
 
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
+
+
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+  });
+
+//get the token from screenShare component to call Twilio API
+app.get('/token', function(request, response) {
+	var identity = request.query.identity;
+  
+	// Create an access token which we will sign and return to the client,
+	// containing the grant we just created.
+	var token = new AccessToken(
+		"AC1b03b2bb15c08d4329210934990bb156",
+		"SK822cb9c8fb8234ab3a2f957c2d25e62b",
+		"VmYBts015S1TJIykSScv1EFuxtUPS1C3"
+	);
+  
+	// Assign the generated identity to the token.
+	token.identity = identity;
+  
+	// Grant the access token Twilio Video capabilities.
+	var grant = new VideoGrant();
+	token.addGrant(grant);
+  
+	// Serialize the token to a JWT string and include it in a JSON response.
+	response.send({
+	  identity: identity,
+	  token: token.toJwt()
+	});
+  });
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -54,7 +93,8 @@ function extractJSONFromRequest(req){
 }
 module.exports.extractJSONFromRequest = extractJSONFromRequest;
 
-*/
+
+
 function generateRandomId(lengthOfRandomId){
 	var id = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
