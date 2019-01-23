@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require("express");
 const Sequelize = require("sequelize");
 const sequelize = new Sequelize("mysql:8889/justo");
@@ -74,7 +75,9 @@ app.get("/profilePicUpload", function(req, res){
 	res.writeHead(200, {
 		"Content-Type": "text/html"
 	});
-	fs.readFile("./testFiles/uploadImage.html", "utf8", function(err, data) {
+	fs.readFile("./client/src/components/Upload/index.js"
+		// "./testFiles/uploadImage.html"
+		, "utf8", function(err, data) {
 		if (err) throw err;
 		res.write(data);
 		res.end();
@@ -89,7 +92,7 @@ const handleErrorInProfilePicUpload = function(err, res) {
 };
 
 const upload = multer({
-  dest: "./uploads"
+  dest:path.join(__dirname,  "/uploads")
   // You might also want to set some limits: https://github.com/expressjs/multer#limits
 });
 
@@ -122,7 +125,7 @@ app.get('/api/allUsers', function(req,res) {
 })
 
 app.post(
-	"/upload/:userid",
+	"/account/:userid",
 	upload.single("file" /* name attribute of <file> element in your form */),
 	function(req, res){
 		const newFileName = (new Date()).getTime();
@@ -136,7 +139,11 @@ app.post(
 						image: newFileName
 					});
 				});
-				res.status(200).contentType("text/plain").end("File uploaded!");
+				console.log(req.path)
+				// res.json({success:true});
+				// res.redirect("/account/" + req.params.userid)
+				res.redirect(req.path)
+
 			});
 		} else {
 			fs.unlink(tempPath, err => {
@@ -144,7 +151,7 @@ app.post(
 				res
 					.status(403)
 					.contentType("text/plain")
-					.end("Only .png files are allowed!");
+					.end("Only .png files allowed");
 			});
 		}
 	}

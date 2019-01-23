@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
-import axios from 'axios';
 
 function Navs(props){
 
