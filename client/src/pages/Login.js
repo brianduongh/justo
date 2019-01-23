@@ -34,7 +34,7 @@ class Login extends Component {
     const { email, password } = this.state;
     return(
       <div>
-        <Navs page ="Login" />
+        <Navs page ="Login" style ={styling}/>
         <div className="login-page">
           <form onSubmit={this.handleSubmit}>
           <h1 style={{ textAlign:"center", fontSize:"16px", color:"#ECECEC", paddingBottom:"20px" }}>Login to your account to continue...</h1>

@@ -5,11 +5,7 @@ import FreelancerCard from "../components/FreelancerCard";
 import AddUser from "../components/AddUser";
 import freelancers from "../freelancers.json";
 import { Grid, Row } from "react-bootstrap";
-<<<<<<< HEAD
-import axios from "axios";
-=======
 import axios from 'axios';
->>>>>>> 73991d9356c0484a8bfca6d047df3e0ad0d29c04
 
 class Dashboard extends Component {
 
@@ -23,18 +19,6 @@ class Dashboard extends Component {
         this.setState({freelancers:[freelancers]});
       };
 
-<<<<<<< HEAD
-      componentDidMount() {
-        axios.get('/api/allUsers', () => {
-          console.log(true)
-        }).then(res => {
-          console.log(res.data.users);
-          this.setState({
-            freelancers: res.data.users
-          })
-        })
-      }
-=======
     handleLogout() {
       axios.post('/api/logout', () => {
         console.log('logged out')
@@ -54,7 +38,6 @@ class Dashboard extends Component {
         })
       })
     }
->>>>>>> 73991d9356c0484a8bfca6d047df3e0ad0d29c04
 
     render() {
         return (

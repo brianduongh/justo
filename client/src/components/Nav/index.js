@@ -25,11 +25,7 @@ function Navs(props){
 							<NavItem eventKey={2} href="/profile" style={props.style}>
 								Profile
 							</NavItem>
-<<<<<<< HEAD
-							<NavItem eventKey={3} href="/signout" style={props.style}>
-=======
-							<NavItem eventKey={3} onClick={props.logout} href="/">
->>>>>>> 73991d9356c0484a8bfca6d047df3e0ad0d29c04
+							<NavItem eventKey={3} onClick={props.logout} href="/" style={props.style}>
 								Sign Out
 							</NavItem>
 						</Nav>
