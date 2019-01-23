@@ -164,4 +164,59 @@ app.post(
 /* -----------------------------THIS-IS-FOR-THE-API-SHEIS----------------------------- */
 /* ----------------------------------------------------------------------------------- */
 
+/* This allows users to log in, and get a cookie for their session. */
+app.post("/api/attemptLogin", function(req, res){
+	extractJSONFromRequest(req).then(function(data){
+		db.users.find({
+			where: {
+				email: data.email
+			}
+		}).then(function(user){
+      console.log(user);
+			if(user){
+				if(bc.compareSync(data.password, user.password)){
+					var sessionId = generateRandomId(255);
+					var salt = bc.genSaltSync(10);
+					db.sessions.create({
+						session_id: bc.hashSync(sessionId, salt),
+						session_user_id: user.id
+					}).then(function(sess){
+						res.writeHead(200, {
+							"Set-Cookie": [
+								"session_id=" + sessionId + "; HttpOnly;  path=/;",
+								"salt=" + salt + "; HttpOnly;  path=/;"
+							],
+							"Content-Type": "application/json"
+						});
+						res.end( JSON.stringify({successMessage: "Welcome " + user.first_name}) );
+					});
+				}else{
+					res.setHeader("Content-Type", "application/json");
+					res.end( JSON.stringify({failureMessage: "Login failed. One of the fields entered were incorrect. "}) );
+				}
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({failureMessage: "Login failed. One of the fields entered were incorrect. "}) );
+			}
+		});
+	});
+});
 
+/* This adds a new user to the database. */
+app.post("/api/newUser", function(req, res){
+	var cookies = req.cookies;
+	db.users.create({
+		first_name:      data.first_name,
+		last_name:       data.last_name,
+		email:           data.email,
+		password:        bc.hashSync(data.password),
+		image:           data.image,
+		user_type:       data.user_type,
+		user_rate:       data.user_rate || null,
+		user_profession: data.user_profession || null,
+		user_title:      data.user_title || null
+	}).then(function(newUser){
+		res.setHeader("Content-Type", "application/json");
+		res.end( JSON.stringify({message: "Successfully created new user " + JSON.stringify(newUser) }) );
+	});
+});
