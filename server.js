@@ -22,7 +22,7 @@ const moment = require("moment");
 
 const routes = require("./routes");
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
