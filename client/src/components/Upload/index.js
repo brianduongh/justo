@@ -1,5 +1,7 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
+import "./style.css";
+
 // import freelancers from "../../freelancers.json";
 
 
@@ -11,16 +13,9 @@ class Upload extends React.Component {
       this.handleClose = this.handleClose.bind(this);
   
       this.state = {
-        show: false,
-        // freelancers,
-        // user_id: null 
+        show: false
       };
     }
-
-    // componentWillMount(){
-    //     console.log(this.props.id);
-    //     this.setState({ user_id: this.props.id })
-    // }
 
     handleClose() {
       this.setState({ show: false });
@@ -35,8 +30,8 @@ class Upload extends React.Component {
       return (
         <div>
   
-          <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-            Upload a Picture
+          <Button onClick={this.handleShow}>
+            Upload Profile Photo
           </Button>
   
           <Modal show={this.state.show} onHide={this.handleClose}>

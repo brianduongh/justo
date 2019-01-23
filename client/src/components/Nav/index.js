@@ -5,7 +5,7 @@ import { Navbar, NavItem, Nav } from "react-bootstrap";
 function Navs(props){
 
 		return (
-			<div>
+			<div >
 				<Navbar>
 
 					<Navbar.Header>
@@ -17,15 +17,15 @@ function Navs(props){
 						<Navbar.Toggle />
 					</Navbar.Header>
 
-					<Navbar.Collapse>
-						<Nav pullRight>
-							<NavItem eventKey={1} href="/dashboard">
+					<Navbar.Collapse > 
+						<Nav >
+							<NavItem eventKey={1} href="/dashboard" style={props.style}>
 								Dashboard
 							</NavItem>
-							<NavItem eventKey={2} href="/profile">
+							<NavItem eventKey={2} href="/profile" style={props.style}>
 								Profile
 							</NavItem>
-							<NavItem eventKey={3} href="/signout">
+							<NavItem eventKey={3} href="/signout" style={props.style}>
 								Sign Out
 							</NavItem>
 						</Nav>
