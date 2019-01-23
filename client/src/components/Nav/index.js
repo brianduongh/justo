@@ -24,7 +24,7 @@ function Navs(props){
 
 					<Navbar.Header>
 						<Navbar.Brand>
-							<a href="/dashboard" id ="brand">
+							<a href="/" id ="brand">
 								{props.page}
 							</a>
 						</Navbar.Brand>

@@ -16,7 +16,6 @@ html, body, #root {
   padding-top:0px;
   display:block;
   width:400px;
-  max-width:80%;
 }
 
 .text-block {
@@ -36,9 +35,11 @@ html, body, #root {
 }
 
 .login-page {
+  padding-top:30px;
   text-align:center;
   margin:auto;
-  margin: 20px;
+  width:500px;
+  max-width:80%;
 }
 
 .justo-button {

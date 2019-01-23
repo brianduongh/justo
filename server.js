@@ -54,7 +54,6 @@ function extractJSONFromRequest(req){
 }
 module.exports.extractJSONFromRequest = extractJSONFromRequest;
 
-*/
 function generateRandomId(lengthOfRandomId){
 	var id = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
