@@ -239,3 +239,63 @@ app.post("/api/logout", function(req, res){
 		}
 	});
 });
+
+/* This allows users to create new postings in their name. */
+app.post("/api/newPosting", function(req, res){
+	var cookies = req.cookies;
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					db.postings.create({
+						posting_owner: data.posting_owner
+					}).then(function(newPosting){
+						res.setHeader("Content-Type", "application/json");
+						res.end( JSON.stringify({message: "Successfully created new posting " + JSON.stringify(newPosting) }) );
+					});
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
+	});
+});
+
+app.post("/api/newJob", function(req, res){
+	var cookies = req.cookies;
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					db.jobs.create({
+						job_hours:    data.job_hours,
+						posting:      data.posting,
+						job_employee: user.id
+					}).then(function(newJob){
+						res.end( JSON.stringify({message: "Successfully created new job " + JSON.stringify(newJob) }) );
+					});
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
+	});
+});
