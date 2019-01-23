@@ -75,7 +75,9 @@ app.post(
 						image: newFileName
 					});
 				});
-				res.status(200).contentType("text/plain").end("File uploaded!");
+				// res.json({success:true});
+				res.redirect("/account/" + req.params.userid)
+
 			});
 		} else {
 			fs.unlink(tempPath, err => {
@@ -83,7 +85,7 @@ app.post(
 				res
 					.status(403)
 					.contentType("text/plain")
-					.end("Only .png files are allowed!");
+					.end("Only .png files allowed");
 			});
 		}
 	}

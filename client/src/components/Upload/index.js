@@ -1,5 +1,7 @@
 import React from "react";
-import { Popover, Tooltip, Button, Modal } from "react-bootstrap";
+import { Button, Modal } from "react-bootstrap";
+import freelancers from "../../freelancers.json";
+
 
 class Upload extends React.Component {
     constructor(props, context) {
@@ -9,10 +11,17 @@ class Upload extends React.Component {
       this.handleClose = this.handleClose.bind(this);
   
       this.state = {
-        show: false
+        show: false,
+        freelancers,
+        user_id: null 
       };
     }
-  
+
+    componentWillMount(){
+        console.log(this.props.id);
+        this.setState({ user_id: this.props.id })
+    }
+
     handleClose() {
       this.setState({ show: false });
     }
@@ -22,12 +31,6 @@ class Upload extends React.Component {
     }
   
     render() {
-      const popover = (
-        <Popover id="modal-popover" title="popover">
-          very popover. such engagement
-        </Popover>
-      );
-      const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
   
       return (
         <div>
@@ -40,15 +43,17 @@ class Upload extends React.Component {
             <Modal.Header closeButton>
               <Modal.Title>Modal heading</Modal.Title>
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body >
                 <div>
-                    <form method="post" enctype="multipart/form-data" action="/upload/3">
+                    <form method="post" enctype="multipart/form-data" action="/upload/3" >
                         <input type="file" name="file"/>
                         <input type="submit" value="Submit"/>
                     </form>
+                    
 
                 </div>
             </Modal.Body>
+
             <Modal.Footer>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
