@@ -10,7 +10,7 @@ function Navs(props){
 
 					<Navbar.Header>
 						<Navbar.Brand>
-							<a href="/dashboard" id ="brand">
+							<a href="/" id ="brand">
 								{props.page}
 							</a>
 						</Navbar.Brand>
@@ -25,7 +25,11 @@ function Navs(props){
 							<NavItem eventKey={2} href="/profile" style={props.style}>
 								Profile
 							</NavItem>
+<<<<<<< HEAD
 							<NavItem eventKey={3} href="/signout" style={props.style}>
+=======
+							<NavItem eventKey={3} onClick={props.logout} href="/">
+>>>>>>> 73991d9356c0484a8bfca6d047df3e0ad0d29c04
 								Sign Out
 							</NavItem>
 						</Nav>
@@ -34,8 +38,6 @@ function Navs(props){
 				</Navbar>
 			</div>
 		)
-	// }
-// }
 }
 
 export default Navs;
