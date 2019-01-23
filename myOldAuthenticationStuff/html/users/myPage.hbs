@@ -1,0 +1,105 @@
+<DOCTYPE html>
+<html lang="en-us">
+
+<head>
+	
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+	
+	<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+	
+	<meta charset="UTF-8" />
+	<title>Justo</title>
+</head>
+
+<body>
+	{{#if loggedIn}}
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/index">Justo</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/index">Home <span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/about">About <span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/users/myPage">{{{user.first_name}}} {{{user.last_name}}} <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+				<span class="nav-item">
+					<button onclick="logout()" class="btn btn-primary">Log out</button>
+				</span>
+			</div>
+		</nav>
+	{{else}}
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<a class="navbar-brand" href="/index">Justo</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active">
+						<a class="nav-link" href="/index">Home <span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/about">About <span class="sr-only"></span></a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="/login">Login <span class="sr-only">(current)</span></a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	{{/if}}
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-lg-8">
+				<div class="jumbotron jumbotron-fluid">
+					<div class="container">
+						<img src="{{{user.image}}}" class="rounded float-left" width="200px" alt="ProfilePicture"/>
+						<h1>{{{user.first_name}}} {{{user.last_name}}}</h1>
+						<h3>{{{user.email}}}</h3>
+					</div>
+				</div>
+				<br />
+				<div class="container">
+					<h2>Current jobs</h2>
+					{{#each jobs}}
+						
+					{{/each}}
+					<h2>My postings</h2>
+					{{#each jobs}}
+						
+					{{/each}}
+				</div>
+			</div>
+			
+			<div class="col-md-4 col-lg-4">
+				<div class="card card-body bg-light">
+					<h3>Welcome back!</h3>
+					<h3><small>Ready to get to work?</small></h3> 
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script>
+		function logout(){
+			$.post("/api/logout", JSON.stringify({}) ).then(function(data) {
+				window.location.href = "/index";
+			});
+		}
+	</script>
+	
+</body>
+
+</html>

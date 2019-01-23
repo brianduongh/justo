@@ -5,34 +5,34 @@ import { Navbar, NavItem, Nav } from "react-bootstrap";
 function Navs(props){
 
 		return (
+			<div>
+				<Navbar>
 
-			<Navbar>
+					<Navbar.Header>
+						<Navbar.Brand>
+							<a href="/dashboard" id ="brand">
+								{props.page}
+							</a>
+						</Navbar.Brand>
+						<Navbar.Toggle />
+					</Navbar.Header>
 
-				<Navbar.Header>
-                        <Navbar.Brand>
-                            <a href="/dashboard" id ="brand">
-                                {props.page}
-                            </a>
-                        </Navbar.Brand>
-                        {/* <i class="fas fa-user-plus" id ="plus"></i> */}
-                    <Navbar.Toggle />
-				</Navbar.Header>
+					<Navbar.Collapse>
+						<Nav pullRight>
+							<NavItem eventKey={1} href="/dashboard">
+								Dashboard
+							</NavItem>
+							<NavItem eventKey={2} href="/profile">
+								Profile
+							</NavItem>
+							<NavItem eventKey={3} href="/signout">
+								Sign Out
+							</NavItem>
+						</Nav>
+					</Navbar.Collapse>
 
-				<Navbar.Collapse>
-					<Nav pullRight>
-						<NavItem eventKey={1} href="/dashboard">
-							Dashboard
-						</NavItem>
-						{/* <NavItem eventKey={2} href="/account">
-							Account
-						</NavItem> */}
-						<NavItem eventKey={2} href="/signout">
-							Sign Out
-						</NavItem>
-					</Nav>
-				</Navbar.Collapse>
-
-			</Navbar>
+				</Navbar>
+			</div>
 		)
 	// }
 // }

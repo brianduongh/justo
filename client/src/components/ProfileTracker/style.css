@@ -1,5 +1,5 @@
 .p-card {
-  margin:10px 0px 10px auto;
+  margin:0px 0px 20px auto;
 }
 
 .p-text {
@@ -8,7 +8,7 @@
   font-weight:100;
   color:black;
   padding:15px;
-  font-size:16px;
+  font-size:14px;
   background:#ECECEC;
   box-shadow: grey 2px 2px 2px;
   border-radius:6px;

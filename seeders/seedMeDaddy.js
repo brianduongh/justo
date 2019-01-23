@@ -5,6 +5,8 @@ const sequelize = new Sequelize("mysql:8889/justo");
 
 var db = require(__dirname + "/../models");
 
+var bc = require("bcrypt-nodejs");
+
 var users = [
 	["Caasi",     "Lemroh"],
 	["Iman",      "Uman"],
@@ -36,9 +38,10 @@ function addUsers(){
 			db.users.create({
 				first_name: users[i][0],
 				last_name:  users[i][1],
-				email:      users[i][0] + users[i][1] + "@example.com"
+				email:      users[i][0] + users[i][1] + "@example.com",
+				password:   bc.hashSync(users[i][0]+users[i][1])
 			}).then(function(result){
-				
+
 			});
 		}
 		resolve(users);
@@ -58,6 +61,7 @@ function addTheRest(times){
 			employees.push(newEmployee);
 		}
 		db.postings.create({
+			posting_title: "Title"+times,
 			posting_type: "Personal",
 			posting_desc: lorem,
 			posting_tags: "personal, cs, computerCS, computer science, loli",
@@ -88,7 +92,7 @@ function addTheRest(times){
 								term_summery: lorem,
 								posting_employee: posting_employeesRes.dataValues.id
 							}).then(function(termRes){
-								
+
 							});
 						}
 					});
@@ -99,5 +103,5 @@ function addTheRest(times){
 				addTheRest(times-1);
 			}
 		});
-	
+
 }
