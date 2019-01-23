@@ -35,6 +35,12 @@ html, body, #root {
   margin:auto;
 }
 
+.login-page {
+  text-align:center;
+  margin:auto;
+  margin: 20px;
+}
+
 .justo-button {
   display:inline-block;
   font-size:16px;

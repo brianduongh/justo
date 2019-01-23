@@ -1,6 +1,6 @@
 const express = require("express");
 const Sequelize = require("sequelize");
-const sequelize = new Sequelize("mysql:3306/justo");
+const sequelize = new Sequelize("mysql:8889/justo");
 
 var db = require(__dirname + "/models");
 
@@ -41,32 +41,29 @@ db.sequelize.sync({force: false}).then(function() {
 
 /* -----------------------ONLY-UTILS-GO-HERE!----------------------- */
 
-/* 
-   This takes a request, and returns a promise with the relevent 
-   JSON as a parameter. 
+/*
+   This takes a request, and returns a promise with the relevent
+   JSON as a parameter.
 */
 function extractJSONFromRequest(req){
 	var prom = new Promise(function(resolve, reject){
 		resolve(req.body);
 	});
-	
+
 	return prom;
 }
 module.exports.extractJSONFromRequest = extractJSONFromRequest;
 
-/* 
-   This nice little function just generates a random id of letters 
-   and numbers at the length of the param "lengthOfRandomId". 
 */
 function generateRandomId(lengthOfRandomId){
 	var id = "";
 	var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-	
+
 	for (let i = 0; i < lengthOfRandomId; i++){
 		id += possible.charAt(Math.floor(Math.random() * possible.length));
 	}
 	return id;
-	
+
 }
 module.exports.generateRandomId = generateRandomId;
 /* ----------------------------------------------------------- */
@@ -93,7 +90,7 @@ const handleErrorInProfilePicUpload = function(err, res) {
 };
 
 const upload = multer({
-  dest: "/uploads"
+  dest: "./uploads"
   // You might also want to set some limits: https://github.com/expressjs/multer#limits
 });
 
@@ -138,6 +135,7 @@ app.post("/api/attemptLogin", function(req, res){
 				email: data.email
 			}
 		}).then(function(user){
+      console.log(user);
 			if(user){
 				if(bc.compareSync(data.password, user.password)){
 					var sessionId = generateRandomId(255);
