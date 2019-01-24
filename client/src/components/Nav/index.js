@@ -21,13 +21,13 @@ function Navs(props){
 					<Navbar.Collapse>
 						<Nav pullRight>
 							<NavItem eventKey={1} style={props.style}>
-								<Link to={"/dashboard"}><button className="justo-button" type="submit">Dashboard</button></Link>
+								<Link to={"/dashboard"} style={{ color:"white" }}>Dashboard</Link>
 							</NavItem>
 							<NavItem eventKey={2} style={props.style}>
-								<Link to={"/profile"}><button className="justo-button" type="submit">Profile</button></Link>
+								<Link to={"/profile"} style={{ color:"white" }}>Profile</Link>
 							</NavItem>
 							<NavItem eventKey={3} style={props.style}>
-							<Link to={"/landing"}><button className="justo-button" type="submit">Sign Out</button></Link>
+								<Link to={"/signout"} style={{ color:"white" }}>Sign Out</Link>
 							</NavItem>
 						</Nav>
 					</Navbar.Collapse>
