@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
+import Navs from "../components/Nav"
 import axios from 'axios';
 
 class Login extends Component {
@@ -27,27 +28,30 @@ class Login extends Component {
   render() {
     const { email, password } = this.state;
     return(
-      <div className="login-page">
-        <form onSubmit={this.handleSubmit}>
-        <h1>Login</h1>
-          <FormGroup>
-            <FormControl
-            type="email"
-            placeholder="Email"
-            value={email}
-            onChange={this.handleChange('email')}
-              />
-          </FormGroup>
-          <FormGroup>
-            <FormControl
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={this.handleChange('password')}
-              />
-          </FormGroup>
-          <Button className="justo-button" type="submit">Submit</Button>
-        </form>
+      <div>
+        <Navs page ="Login" />
+        <div className="login-page">
+          <form onSubmit={this.handleSubmit}>
+          <h1 style={{ textAlign:"center", fontSize:"16px", color:"#ECECEC", paddingBottom:"20px" }}>Login to your account to continue...</h1>
+            <FormGroup>
+              <FormControl
+                type="email"
+                placeholder="Email"
+                value={email}
+                onChange={this.handleChange('email')}
+                />
+            </FormGroup>
+            <FormGroup>
+              <FormControl
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={this.handleChange('password')}
+                />
+            </FormGroup>
+            <Button className="justo-button" type="submit">Submit</Button>
+          </form>
+        </div>
       </div>
     )
   }

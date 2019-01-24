@@ -28,6 +28,8 @@ var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
 
+/* -----------------------SCREENSHARE----------------------- */
+
 app.use(function(req, res, next) {
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -59,6 +61,10 @@ app.get('/token', function(request, response) {
 	  token: token.toJwt()
 	});
   });
+
+/* This is for multer. */
+app.use(express.static('/uploads'))
+
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -238,6 +244,27 @@ app.post("/api/attemptLogin", function(req, res){
 	});
 });
 
+/* This adds a new user to the database. */
+app.post("/api/newUser", function(req, res){
+	var cookies = req.cookies;
+	extractJSONFromRequest(req).then(function(data){
+		db.users.create({
+			first_name:      data.first_name,
+			last_name:       data.last_name,
+			email:           data.email,
+			password:        bc.hashSync(data.password),
+			image:           data.image,
+			user_type:       data.user_type,
+			user_rate:       data.user_rate || null,
+			user_profession: data.user_profession || null,
+			user_title:      data.user_title || null
+		}).then(function(newUser){
+			res.setHeader("Content-Type", "application/json");
+			res.end( JSON.stringify({message: "Successfully created new user " + JSON.stringify(newUser) }) );
+		});
+	});
+});
+
 /* This is what allows users to log out. */
 app.post("/api/logout", function(req, res){
 	var cookies = req.cookies;
@@ -247,7 +274,6 @@ app.post("/api/logout", function(req, res){
 		}
 	}).then(function(destroyed){
 		res.setHeader("Content-Type", "application/json");
-		console.log("---------------" + JSON.stringify(destroyed) );
 		if(destroyed){
 			res.end( JSON.stringify({message: "Logged user " + destroyed.session_id + " out."}) );
 		}else{
@@ -259,7 +285,6 @@ app.post("/api/logout", function(req, res){
 /* This allows users to create new postings in their name. */
 app.post("/api/newPosting", function(req, res){
 	var cookies = req.cookies;
-	console.log("--------------" + JSON.stringify(cookies) );
 	extractJSONFromRequest(req).then(function(data){
 		db.sessions.find({
 			where: {
@@ -273,11 +298,7 @@ app.post("/api/newPosting", function(req, res){
 					}
 				}).then(function(user){
 					db.postings.create({
-						posting_title: data.posting_title,
-						posting_type:  data.posting_type,
-						posting_desc:  data.posting_desc,
-						posting_completion_deadline: moment(data.posting_completion_deadline).format("YYYY-MM-DD"),
-						posting_owner: user.id
+						posting_owner: data.posting_owner
 					}).then(function(newPosting){
 						res.setHeader("Content-Type", "application/json");
 						res.end( JSON.stringify({message: "Successfully created new posting " + JSON.stringify(newPosting) }) );
@@ -291,46 +312,83 @@ app.post("/api/newPosting", function(req, res){
 	});
 });
 
-/* This adds a new user to the database. */
-app.post("/api/newUser", function(req, res){
+app.post("/api/newJob", function(req, res){
 	var cookies = req.cookies;
-	db.users.create({
-		first_name: data.first_name,
-		last_name:  data.last_name,
-		email:      data.email,
-		password:   bc.hashSync(data.password)
-	}).then(function(newUser){
-		res.setHeader("Content-Type", "application/json");
-		res.end( JSON.stringify({message: "Successfully created new user " + JSON.stringify(newUser) }) );
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					db.jobs.create({
+						job_hours:    data.job_hours,
+						posting:      data.posting,
+						job_employee: user.id
+					}).then(function(newJob){
+						res.end( JSON.stringify({message: "Successfully created new job " + JSON.stringify(newJob) }) );
+					});
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
 	});
 });
 
-/* This creates a new bid in the users name for whatever posting they are viewing. */
-app.post("/api/newBid", function(req, res){
+app.post("/api/requestInfoOnUser", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
-		if(cookies.session_id){
-			db.sessions.find({
-				where: {
-					session_id: bc.hashSync(cookies.session_id, cookies.salt)
-				}
-			}).then(function(session){
-				if(session){
-					db.bids.create({
-						employee_rate: data.employee_rate,
-						notes:  data.notes,
-						deadline: moment(data.deadline).format("YYYY-MM-DD"),
-						posting: data.posting,
-						employee: session.session_user_id
-					}).then(function(newBid){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					if(user.user_type === "employer"){
+						db.users.find({
+							where: {
+								user_type: "employee"
+							}
+						}).then(function(requestedUsers){
+							for(let i in requestedUsers){
+								requestedUsers[i].password = "None of your business";
+							}
+							res.setHeader("Content-Type", "application/json");
+							res.end( JSON.stringify(requestedUsers) );
+						});
+					}else if(user.user_type === "employee"){
+						db.users.find({
+							where: {
+								user_type: "employer"
+							}
+						}).then(function(requestedUsers){
+							for(let i in requestedUsers){
+								requestedUsers[i].password = "None of your business";
+							}
+							res.setHeader("Content-Type", "application/json");
+							res.end( JSON.stringify(requestedUsers) );
+						});
+					}else{
 						res.setHeader("Content-Type", "application/json");
-						res.end( JSON.stringify({message: "Successfully created new bid " + JSON.stringify(newBid) }) );
-					});
-				}else{
-					res.setHeader("Content-Type", "application/json");
-					res.end( JSON.stringify({message: "Sorry, but it looks like you are not logged in right now. If this problem persists, consider logging out and logging in again before attempting this again. Sorry for the inconvenience." }) );
-				}
-			});
-		}
+						res.end( JSON.stringify({message: "Could not do what you requested because you are neither an employer nor employee. Are you Neo? "}) );
+					}
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
 	});
 });
