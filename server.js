@@ -312,7 +312,7 @@ app.post("/api/newPosting", function(req, res){
 	});
 });
 
-app.post("/api/newJob", function(req, res){
+app.post("/api/addMeToTheNewJob", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
 		db.sessions.find({
@@ -342,7 +342,8 @@ app.post("/api/newJob", function(req, res){
 	});
 });
 
-app.post("/api/requestInfoOnUser", function(req, res){
+
+app.post("/api/newJob", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
 		db.sessions.find({
@@ -356,34 +357,13 @@ app.post("/api/requestInfoOnUser", function(req, res){
 						id: session.session_user_id
 					}
 				}).then(function(user){
-					if(user.user_type === "employer"){
-						db.users.find({
-							where: {
-								user_type: "employee"
-							}
-						}).then(function(requestedUsers){
-							for(let i in requestedUsers){
-								requestedUsers[i].password = "None of your business";
-							}
-							res.setHeader("Content-Type", "application/json");
-							res.end( JSON.stringify(requestedUsers) );
-						});
-					}else if(user.user_type === "employee"){
-						db.users.find({
-							where: {
-								user_type: "employer"
-							}
-						}).then(function(requestedUsers){
-							for(let i in requestedUsers){
-								requestedUsers[i].password = "None of your business";
-							}
-							res.setHeader("Content-Type", "application/json");
-							res.end( JSON.stringify(requestedUsers) );
-						});
-					}else{
-						res.setHeader("Content-Type", "application/json");
-						res.end( JSON.stringify({message: "Could not do what you requested because you are neither an employer nor employee. Are you Neo? "}) );
-					}
+					db.jobs.create({
+						job_hours:    data.job_hours,
+						posting:      data.posting,
+						job_employee: data.id
+					}).then(function(newJob){
+						res.end( JSON.stringify({message: "Successfully created new job " + JSON.stringify(newJob) }) );
+					});
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
