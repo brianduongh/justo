@@ -5,14 +5,11 @@ import ProfileTracker from "../ProfileTracker"
 import FreelancerCard from "../FreelancerCard"
 import freelancers from "../../freelancers.json";
 import { Grid, Row, Col } from "react-bootstrap";
-import axios from 'axios';
-import Upload from '.'
-
 
 
 class Timer extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor() {
+        super();
         this.state = {
             timerStarted: false,
             timerStopped: true,
@@ -22,7 +19,7 @@ class Timer extends React.Component {
             hourlyPay: 20,
             payAmount: 0,
             captures: [],
-            id: props.id,
+
             freelancers,
             user_id: null
         };
@@ -30,14 +27,8 @@ class Timer extends React.Component {
     }
 
     componentWillMount(){
-      this.setState({ user_id: this.props.id })
-      axios.post('/api/requestInfoOnUser', () => {
-        console.log('retrieve user')
-      })
-      .then(res => {
-        console.log(this.state.id)
-        console.log(res)
-      })
+        console.log(this.props.id);
+        this.setState({ user_id: this.props.id })
     }
 
     handleTimerStart(e) {
@@ -73,8 +64,8 @@ class Timer extends React.Component {
         this.setState({
             timerStarted: false,
             timerStopped: true,
-            seconds: 0,
-            minutes: 0,
+            seconds: 0, 
+            minutes: 0, 
             hours: 0 })
         clearInterval(this.timer)
     }
@@ -98,7 +89,7 @@ class Timer extends React.Component {
                         <Row>
 
                             <Col xs={12} sm={12} md={6}>
-                                <FreelancerCard
+                                <FreelancerCard 
                                     name={freelancers[this.state.user_id].name}
                                     image={"../" + freelancers[this.state.user_id].image}
                                     active={freelancers[this.state.user_id].active}
@@ -108,12 +99,12 @@ class Timer extends React.Component {
 
                             <Col xs={12} sm={12} md={6}>
                                 <ProfileTracker
-                                    key={freelancers[this.state.user_id].id}
+                                    key={freelancers[0].id}
                                     id={freelancers[this.state.user_id].id}
                                     name={freelancers[this.state.user_id].name}
                                     profession={freelancers[this.state.user_id].profession}
-                                    hours={this.state.hours} minutes={this.state.minutes} seconds= {this.state.seconds}
-                                    rate={freelancers[this.state.user_id].rate}
+                                    hours={this.state.hours} minutes={this.state.minutes} seconds= {this.state.seconds} 
+                                    rate={freelancers[this.state.user_id].rate} 
                                     payAmount={this.state.payAmount}>
                                 </ProfileTracker>
                                 <div className="timer-controls">

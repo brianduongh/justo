@@ -31,7 +31,7 @@ function ProfileTracker(props) {
                 </div>
                 <div>
                     <button className="justo-button">Make Payment</button>
-                    <button className="justo-button">Request Screen Share</button>
+                    <button className="justo-button"><a style={{ color:"#ECECEC" }} href="/screenshare">Request Screen Share</a></button>
                 </div>
             </div>
         )

@@ -100,6 +100,11 @@ body {
   padding-left: 1.5em;
 }
 
+.sidebyside {
+  display: inline-block;
+  vertical-align:top; 
+}
+
 #controls #log {
   border: 1px solid #686865;
 }
@@ -130,14 +135,15 @@ body {
 }
 
 #controls #log {
-  width: 35%;
-  height: 9.5em;
+  min-width: 200px;
+  min-height: 100px;
   margin-top: 2.75em;
+  margin-left: 2em;
   text-align: left;
   padding: 1.5em;
-  float: right;
   overflow-y: scroll;
 }
+
 
 #controls #log p {
   color: #686865;

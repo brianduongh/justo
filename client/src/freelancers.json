@@ -14,7 +14,7 @@
     "name": "Issac Hormel",
     "image":
       "images/profile-isaac.png",
-    "active": true,
+    "active": false,
     "rate": 30,
     "profession": "Back-end Web Developer",
     "employer": false
@@ -36,7 +36,7 @@
     "images/profile-anna.png",
     "rate": 25,
     "profession": "Front-end Web Developer",
-    "active": false,
+    "active": true,
     "employer": false
   },
   {
@@ -48,6 +48,14 @@
     "profession": "Back-end Web Developer",
     "active": false,
     "employer": false
+  },
+  {
+    "id": 5,
+    "name": "Eric Scott",
+    "image":
+      "images/profile-ceo.jpeg",
+    "profession": "Lead Instructor",
+    "employer": true
   }
 ]
 
