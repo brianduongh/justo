@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { Link } from "react-router-dom";
 
 function ProfileTracker(props) {
     
@@ -31,7 +32,7 @@ function ProfileTracker(props) {
                 </div>
                 <div>
                     <button className="justo-button">Make Payment</button>
-                    <button className="justo-button"><a style={{ color:"#ECECEC" }} href="/screenshare">Request Screen Share</a></button>
+                    <Link to={"/screenshare/"}><button className="justo-button">Request Screen Share</button></Link>
                 </div>
             </div>
         )

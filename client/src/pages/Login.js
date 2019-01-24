@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import Navs from "../components/Nav"
+import { Link } from "react-router-dom";
 
 const styling ={
   display:'none'
@@ -25,7 +26,7 @@ function Login() {
               placeholder="Password"
               />
           </FormGroup>
-          <Button href="/dashboard" className="justo-button" type="submit">Submit</Button>
+          <Link to={"/dashboard"}><button className="justo-button" type="submit">Submit</button></Link>
         </form>
       </div>
     </div>
