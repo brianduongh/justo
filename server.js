@@ -39,7 +39,7 @@ app.use(function(req, res, next) {
 //get the token from screenShare component to call Twilio API
 app.get('/token', function(request, response) {
 	var identity = request.query.identity;
-  
+
 	// Create an access token which we will sign and return to the client,
 	// containing the grant we just created.
 	var token = new AccessToken(
@@ -47,14 +47,14 @@ app.get('/token', function(request, response) {
 		"SK822cb9c8fb8234ab3a2f957c2d25e62b",
 		"VmYBts015S1TJIykSScv1EFuxtUPS1C3"
 	);
-  
+
 	// Assign the generated identity to the token.
 	token.identity = identity;
-  
+
 	// Grant the access token Twilio Video capabilities.
 	var grant = new VideoGrant();
 	token.addGrant(grant);
-  
+
 	// Serialize the token to a JWT string and include it in a JSON response.
 	response.send({
 	  identity: identity,
@@ -420,7 +420,7 @@ app.get('/api/allUsers', function(req,res) {
 });
 
 /* This little beauty gives you users that are not the same type as you. */
-app.post("/api/requestInfoOnUsers", function(req, res){
+app.get("/api/requestInfoOnUsers", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
 		db.sessions.find({
@@ -440,6 +440,8 @@ app.post("/api/requestInfoOnUsers", function(req, res){
 								user_type: "employee"
 							}
 						}).then(function(requestedUsers){
+							console.log(requestedUsers);
+							res.json({ users: requestedUsers });
 							for(let i in requestedUsers){
 								requestedUsers[i].password = "None of your business";
 							}
@@ -455,6 +457,7 @@ app.post("/api/requestInfoOnUsers", function(req, res){
 							for(let i in requestedUsers){
 								requestedUsers[i].password = "None of your business";
 							}
+							// res.json({ users: requestedUsers });
 							res.setHeader("Content-Type", "application/json");
 							res.end( JSON.stringify(requestedUsers) );
 						});
@@ -472,7 +475,7 @@ app.post("/api/requestInfoOnUsers", function(req, res){
 });
 
 /* This little beauty gives you a user depending on the id */
-app.post("/api/requestInfoOnUser", function(req, res){
+app.get("/api/requestInfoOnUser", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
 		db.sessions.find({
@@ -496,6 +499,7 @@ app.post("/api/requestInfoOnUser", function(req, res){
 							for(let i in requestedUsers){
 								requestedUsers[i].password = "None of your business";
 							}
+							res.json({ users: requestedUsers });
 							res.setHeader("Content-Type", "application/json");
 							res.end( JSON.stringify(requestedUsers) );
 						});
@@ -509,6 +513,7 @@ app.post("/api/requestInfoOnUser", function(req, res){
 							for(let i in requestedUsers){
 								requestedUsers[i].password = "None of your business";
 							}
+							res.json({ users: requestedUsers });
 							res.setHeader("Content-Type", "application/json");
 							res.end( JSON.stringify(requestedUsers) );
 						});
@@ -524,5 +529,3 @@ app.post("/api/requestInfoOnUser", function(req, res){
 		});
 	});
 });
-
-

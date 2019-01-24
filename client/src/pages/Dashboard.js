@@ -5,11 +5,12 @@ import FreelancerCard from "../components/FreelancerCard";
 import AddUser from "../components/AddUser";
 import { Grid, Row } from "react-bootstrap";
 import axios from 'axios';
+import freelancers from '../freelancers.json';
 
 class Dashboard extends Component {
 
     state ={
-      freelancers: []
+      freelancers: freelancers
     }
 
     showPeople = id => {
@@ -32,9 +33,9 @@ class Dashboard extends Component {
         console.log(true)
       }).then(res => {
         console.log(res.data.users);
-        this.setState({
-          freelancers: res.data.users
-        })
+        // this.setState({
+        //   freelancers: res.data.users
+        // })
       })
     }
 
