@@ -33,6 +33,9 @@ class Dashboard extends Component {
         console.log(true)
       }).then(res => {
         console.log(res.data.users);
+        // this.setState({
+        //   freelancers: res.data.users
+        // })
       })
     }
 

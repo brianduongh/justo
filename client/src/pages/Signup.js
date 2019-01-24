@@ -38,7 +38,7 @@ class Signup extends Component {
       .then(res => {
         console.log(res);
         console.log(res.data);
-        this.props.history.push('/dashboard');
+        this.props.history.push('/login');
       })
   }
 

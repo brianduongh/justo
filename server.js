@@ -457,7 +457,7 @@ app.get("/api/requestInfoOnUsers", function(req, res){
 							for(let i in requestedUsers){
 								requestedUsers[i].password = "None of your business";
 							}
-							res.json({ users: requestedUsers });
+							// res.json({ users: requestedUsers });
 							res.setHeader("Content-Type", "application/json");
 							res.end( JSON.stringify(requestedUsers) );
 						});
@@ -475,7 +475,7 @@ app.get("/api/requestInfoOnUsers", function(req, res){
 });
 
 /* This little beauty gives you a user depending on the id */
-app.post("/api/requestInfoOnUser", function(req, res){
+app.get("/api/requestInfoOnUser", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
 		db.sessions.find({
@@ -499,6 +499,7 @@ app.post("/api/requestInfoOnUser", function(req, res){
 							for(let i in requestedUsers){
 								requestedUsers[i].password = "None of your business";
 							}
+							res.json({ users: requestedUsers });
 							res.setHeader("Content-Type", "application/json");
 							res.end( JSON.stringify(requestedUsers) );
 						});
@@ -512,6 +513,7 @@ app.post("/api/requestInfoOnUser", function(req, res){
 							for(let i in requestedUsers){
 								requestedUsers[i].password = "None of your business";
 							}
+							res.json({ users: requestedUsers });
 							res.setHeader("Content-Type", "application/json");
 							res.end( JSON.stringify(requestedUsers) );
 						});
