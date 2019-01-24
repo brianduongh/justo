@@ -525,4 +525,80 @@ app.post("/api/requestInfoOnUser", function(req, res){
 	});
 });
 
+app.post("/api/getPosting", function(req, res){
+	var cookies = req.cookies;
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					db.postings.find({
+						where: {
+							owner: user.id
+						}
+					}).then(function(posting){
+						if(posting){
+							res.setHeader("Content-Type", "application/json");
+							res.end( JSON.stringify(posting) );
+						}else{
+							res.setHeader("Content-Type", "application/json");
+							res.end( JSON.stringify({message: "Could not find a posting connected to this user."}) );
+						}
+					});
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
+	});
+});
 
+app.post("/api/getEmployees", function(req, res){
+	var cookies = req.cookies;
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					db.postings.find({
+						where: {
+							owner: data.id
+						}
+					}).then(function(posting){
+						if(posting){
+							db.jobs.find({
+								where: {
+									posting: posting.id
+								}
+							}).then(function(jobs){
+								res.setHeader("Content-Type", "application/json");
+								res.end( JSON.stringify(jobs) );
+							});
+						}else{
+							res.setHeader("Content-Type", "application/json");
+							res.end( JSON.stringify({message: "Could not find a posting connected to this id."}) );
+						}
+					});
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
+	});
+});
