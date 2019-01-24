@@ -25,8 +25,8 @@ class Dashboard extends Component {
                 <Wrapper>
                     <Grid>
                         <Row>
-
                             {this.state.freelancers.map(freelancer => (
+                                !freelancer.employer ?
                                 <FreelancerCard style={{ float:"left"}}
                                     key={freelancer.id}
                                     id={freelancer.id}
@@ -34,7 +34,7 @@ class Dashboard extends Component {
                                     image={freelancer.image}
                                     active={freelancer.active}
                                     showPeople={this.showPeople}
-                                />
+                                /> : <span></span>
                             ))}
 
                             <AddUser />

@@ -28,31 +28,31 @@ function ProfileForms(props) {
                                     <form>
                                         <p>
                                             <strong>Username: </strong> 
-                                            <input data_id={props.id} type="text" name="username" />
+                                            <input data_id={props.id} type="text" name="username" placeholder="erik@scott.com" />
                                         </p><hr/>
                                     </form>
                                     <form>
                                         <p>
                                             <strong>Password: </strong> 
-                                            <input data_id={props.id} type="text" name="password" />
+                                            <input data_id={props.id} type="password" name="password" />
                                         </p><hr/>
                                     </form>
                                     <form>
                                         <p>
                                             <strong>Name: </strong> 
-                                            <input data_id={props.id} type="text" name="name" />
+                                            <input data_id={props.id} type="text" name="name" placeholder="Erik"/>
                                         </p><hr/>
                                     </form>
                                     <form>
                                         <p>
                                             <strong>Profession: </strong> 
-                                            <input data_id={props.id} type="text" name="profession" />
+                                            <input data_id={props.id} type="text" name="profession" placeholder="Lead Instructor"/>
                                         </p><hr/>
                                     </form>
                                     <form>
                                         <p>     
                                             <strong>Rate/hour: </strong> 
-                                            <input data_id={props.id} type="text" name="rate" />
+                                            <input data_id={props.id} type="text" name="rate" placeholder="$35"/>
                                         </p><hr/>
                                     </form>
                                 </div>
