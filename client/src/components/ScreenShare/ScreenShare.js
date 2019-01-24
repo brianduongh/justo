@@ -208,9 +208,11 @@ render() {
         <div>
             <div id="remote-media"></div>
             <div id="controls">
+                <div className="sidebyside">
                 <NameControls token={this.getToken} />
                 <RoomControls data={this.state.data} activeRoom={this.state.activeRoom} screenTrack={this.state.screenTrack} setScreenTrack={this.setScreenTrack} getUserScreen={this.getUserScreen} roomJoined={this.roomJoined} />
-                <div id="log" ></div>
+                </div>
+                <div id="log" className="sidebyside" ></div>
             </div>
         </div>
     )
