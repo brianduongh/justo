@@ -2,15 +2,15 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "justo",
+    "database": "justo2",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "port": 8889
   },
   "test": {
     "username": "root",
-    "password": "Fib11235",
-    "database": "justo",
+    "password": "root",
+    "database": "justo2",
     "host": "127.0.0.1",
     "dialect": "mysql",
     "port": 8889

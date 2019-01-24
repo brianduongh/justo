@@ -287,4 +287,30 @@ app.post("/api/newBid", function(req, res){
 			});
 		}
 	});
+})
+
+app.get('/api/allUsers', function(req,res) {
+  var cookies = req.cookies;
+	console.log("--------------" + JSON.stringify(cookies) );
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.findAll()
+        .then(function(data){
+					res.json({ users: data });
+          // .then(function(newPosting){
+					// 	res.setHeader("Content-Type", "application/json");
+					// 	res.end( JSON.stringify({message: "Successfully created new posting " + JSON.stringify(newPosting) }) );
+					// });
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+			}
+		});
+	});
 });
