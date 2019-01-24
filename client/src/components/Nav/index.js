@@ -1,7 +1,6 @@
 import React from "react";
 import "./style.css";
 import { Navbar, NavItem, Nav } from "react-bootstrap";
-import axios from 'axios';
 
 function Navs(props){
 
@@ -11,7 +10,7 @@ function Navs(props){
 
 					<Navbar.Header>
 						<Navbar.Brand>
-							<a href="/dashboard" id ="brand">
+							<a href="/" id ="brand">
 								{props.page}
 							</a>
 						</Navbar.Brand>

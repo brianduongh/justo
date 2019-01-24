@@ -9,6 +9,7 @@ import axios from 'axios';
 import Upload from '.'
 
 
+
 class Timer extends React.Component {
     constructor(props) {
         super(props);
@@ -107,7 +108,7 @@ class Timer extends React.Component {
 
                             <Col xs={12} sm={12} md={6}>
                                 <ProfileTracker
-                                    key={freelancers[0].id}
+                                    key={freelancers[this.state.user_id].id}
                                     id={freelancers[this.state.user_id].id}
                                     name={freelancers[this.state.user_id].name}
                                     profession={freelancers[this.state.user_id].profession}
