@@ -163,7 +163,7 @@ app.get('/api/allUsers', function(req,res) {
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
@@ -306,7 +306,7 @@ app.post("/api/newPosting", function(req, res){
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
@@ -336,7 +336,7 @@ app.post("/api/newJob", function(req, res){
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
@@ -387,7 +387,7 @@ app.post("/api/requestInfoOnUser", function(req, res){
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
@@ -413,7 +413,7 @@ app.get('/api/allUsers', function(req,res) {
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
@@ -465,13 +465,13 @@ app.post("/api/requestInfoOnUsers", function(req, res){
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
 });
 
-/* This little beauty gives you a user depending on the id */
+/* This little beauty gives you a user depending on the id. */
 app.post("/api/requestInfoOnUser", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
@@ -519,12 +519,13 @@ app.post("/api/requestInfoOnUser", function(req, res){
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
 });
 
+/* This will give you a posting depending on the id of the posting you give it. */
 app.post("/api/getPosting", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
@@ -541,7 +542,7 @@ app.post("/api/getPosting", function(req, res){
 				}).then(function(user){
 					db.postings.find({
 						where: {
-							owner: user.id
+							id: data.id
 						}
 					}).then(function(posting){
 						if(posting){
@@ -555,12 +556,50 @@ app.post("/api/getPosting", function(req, res){
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
 });
 
+/* This will give you a posting depending on the id of the user you give it. */
+app.post("/api/getUserPosting", function(req, res){
+	var cookies = req.cookies;
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					db.postings.find({
+						where: {
+							owner: data.id
+						}
+					}).then(function(posting){
+						if(posting){
+							res.setHeader("Content-Type", "application/json");
+							res.end( JSON.stringify(posting) );
+						}else{
+							res.setHeader("Content-Type", "application/json");
+							res.end( JSON.stringify({message: "Could not find a posting connected to this user."}) );
+						}
+					});
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
+			}
+		});
+	});
+});
+
+/* This route returns the employees from a specific posting using its id. */
 app.post("/api/getEmployees", function(req, res){
 	var cookies = req.cookies;
 	extractJSONFromRequest(req).then(function(data){
@@ -597,7 +636,35 @@ app.post("/api/getEmployees", function(req, res){
 				});
 			}else{
 				res.setHeader("Content-Type", "application/json");
-				res.end( JSON.stringify({message: "Could not find a user with this session. Try loggin in again if this persists. "}) );
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
+			}
+		});
+	});
+});
+
+/* This route just returns all of the postings that you might want. */
+app.post("/api/getPostings", function(req, res){
+	var cookies = req.cookies;
+	extractJSONFromRequest(req).then(function(data){
+		db.sessions.find({
+			where: {
+				session_id: bc.hashSync(cookies.session_id, cookies.salt)
+			}
+		}).then(function(session){
+			if(session){
+				db.users.find({
+					where: {
+						id: session.session_user_id
+					}
+				}).then(function(user){
+					db.postings.find({}).then(function(postings){
+						res.setHeader("Content-Type", "application/json");
+						res.end( JSON.stringify(postings) );
+					});
+				});
+			}else{
+				res.setHeader("Content-Type", "application/json");
+				res.end( JSON.stringify({message: "Could not find a user with this session. Try logging in again if this persists. "}) );
 			}
 		});
 	});
