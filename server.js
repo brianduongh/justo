@@ -68,6 +68,41 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+/* -----------------------SCREENSHARE----------------------- */
+
+app.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+  });
+
+//get the token from screenShare component to call Twilio API
+app.get('/token', function(request, response) {
+	var identity = request.query.identity;
+  
+	// Create an access token which we will sign and return to the client,
+	// containing the grant we just created.
+	var token = new AccessToken(
+		"AC1b03b2bb15c08d4329210934990bb156",
+		"SK822cb9c8fb8234ab3a2f957c2d25e62b",
+		"VmYBts015S1TJIykSScv1EFuxtUPS1C3"
+	);
+  
+	// Assign the generated identity to the token.
+	token.identity = identity;
+  
+	// Grant the access token Twilio Video capabilities.
+	var grant = new VideoGrant();
+	token.addGrant(grant);
+  
+	// Serialize the token to a JWT string and include it in a JSON response.
+	response.send({
+	  identity: identity,
+	  token: token.toJwt()
+	});
+  });
+
+
 // Add routes, both API and view
 // app.use(routes);
 

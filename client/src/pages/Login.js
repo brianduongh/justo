@@ -3,6 +3,10 @@ import { FormGroup, FormControl, Button } from 'react-bootstrap';
 import Navs from "../components/Nav"
 import axios from 'axios';
 
+const styling ={
+  display:'none'
+}
+
 class Login extends Component {
   state = {
     email: '',
@@ -29,7 +33,7 @@ class Login extends Component {
     const { email, password } = this.state;
     return(
       <div>
-        <Navs page ="Login" />
+        <Navs page ="Login" style={styling}/>
         <div className="login-page">
           <form onSubmit={this.handleSubmit}>
           <h1 style={{ textAlign:"center", fontSize:"16px", color:"#ECECEC", paddingBottom:"20px" }}>Login to your account to continue...</h1>
@@ -49,7 +53,7 @@ class Login extends Component {
                 onChange={this.handleChange('password')}
                 />
             </FormGroup>
-            <Button className="justo-button" type="submit">Submit</Button>
+            <Button href="dashboard" className="justo-button" type="submit">Submit</Button>
           </form>
         </div>
       </div>
